@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FAQ NetCorp - Réponses aux questions fréquentes sur nos services">
+    <title>FAQ NetCorp - Votre succès digital commence ici</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary-dark: #0D1B2A;
+            --primary-accent: #8A004F;
+            --secondary-accent: #D9006E;
+            --highlight: #FFA600;
+            --white: #FFFFFF;
+            --light-bg: #F4F4F4;
+            --text-dark: #1B033D;
+            --medium-gray: #6C757D;
+        }
+
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background-color: var(--primary-accent);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin: 0 1rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .faq-hero {
+                    background: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                                url('faq1.jpeg') center/cover no-repeat;
+                    background: -moz-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                                url('faq1.jpeg') center/cover no-repeat;
+                    background: -o-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                                url('faq1.jpeg') center/cover no-repeat;
+                    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                                url('faq1.jpeg') center/cover no-repeat;
+                    min-height: 50vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--white);
+                    text-align: center;
+                    padding: 2rem;
+                }
+
+        .faq-hero-content {
+            max-width: 800px;
+        }
+
+        .faq-hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .faq-hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* ===== BUTTONS ===== */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--highlight);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== SECTIONS COMMON STYLES ===== */
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--highlight);
+            border-radius: 2px;
+        }
+
+        /* ===== PRESENTATION SECTION ===== */
+        .presentation-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+
+        .presentation-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .presentation-title {
+            font-size: 2.2rem;
+            margin-top: 40px;
+            color: var(--primary-dark);
+            padding-left: 16px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-accent);
+        }
+
+        .presentation-title:hover {
+            color: var(--secondary-accent);
+            letter-spacing: 0.5px;
+        }
+
+        .presentation-subtitle {
+            font-size: 1.3rem;
+            color: var(--primary-accent);
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .presentation-text {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            line-height: 1.8;
+        }
+
+        .presentation-text:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq-section {
+            padding: 5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-section-title {
+            text-align: center;
+            font-size: 2.4em;
+            margin-bottom: 10px;
+            color: var(--primary-accent);
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            color: var(--text-dark);
+        }
+
+        .faq-category {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--highlight);
+        }
+
+        .faq-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+            background: #fff;
+            margin-bottom: 15px;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: var(--primary-accent);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            text-align: left;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #f9f9f9;
+            padding: 0 20px;
+        }
+
+        .faq-answer.open {
+            padding: 20px;
+            max-height: 1000px; /* assez grand pour toutes les réponses */
+        }
+
+        .faq-answer p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .faq-answer img {
+            max-width: 100%;
+            margin-top: 15px;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer img:hover {
+            transform: scale(1.02);
+        }
+
+        .contact-link {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 1.1em;
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .contact-link a {
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link a:hover {
+            color: var(--secondary-accent);
+            text-decoration: underline;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            color: var(--white);
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .footer-contact {
+            opacity: 0.8;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+           
+            
+            .nav-list {
+        width: 100%;
+        height: 100%;
+        padding: 0%;
+        margin: 0%;
+        font-size: 0.7rem;
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-cta {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .nav-cta-button {
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-size: 0.7rem;
+        text-align: center;
+    }
+            
+            
+            .faq-hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .presentation-title {
+                font-size: 1.8rem;
+            }
+            
+            .presentation-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .presentation-text {
+                font-size: 0.95rem;
+                padding: 15px;
+            }
+            
+            .faq-container {
+                padding: 20px;
+            }
+            
+            .faq-section-title {
+                font-size: 1.8rem;
+            }
+            
+            .faq-question {
+                font-size: 1em;
+            }
+            
+            .faq-category {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+            <!--<li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>-->
+            <li class="nav-item"><a href="A propos.html" class="nav-link">À Propos</a></li>
+            <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="faq-hero">
+        <div class="faq-hero-content">
+            <h1 class="faq-hero-title">Questions Fréquentes</h1>
+            <p class="faq-hero-subtitle">Trouvez rapidement les réponses à vos questions sur nos services et notre fonctionnement</p>
+        </div>
+    </header>
+
+    <!-- Présentation Section -->
+    <section class="presentation-section">
+        <div class="presentation-container">
+            <h1 class="presentation-title">PRESENTATION DE NETCORP</h1>
+            <p class="presentation-text">
+                NetCorp est une entreprise dynamique spécialisée dans les services informatiques, dédiée à accompagner les entreprises dans leur transformation numérique. Forts d'une équipe d'experts passionnés et polyvalents, nous offrons une vaste gamme de solutions technologiques adaptées à tous les secteurs d'activités.
+                
+                Notre mission est de fournir des services sur mesure qui répondent aux besoins spécifiques de chaque client. Que vous soyez une start-up cherchant à établir votre présence en ligne ou une entreprise établie souhaitant optimiser ses outils numériques, NetCorp se positionne comme votre partenaire de confiance.
+                
+                Nous avons pour ambition de simplifier l'accès aux technologies les plus avancées, tout en veillant à ce que chaque projet soit mené avec rigueur, créativité et professionnalisme. Grâce à notre expertise, nous transformons vos idées en solutions concrètes, vous permettant ainsi de rester compétitif dans un monde en constante évolution.
+            </p>
+            
+            <h1 class="presentation-title">OBJECTIFS DE NETCORP</h1>
+            <p class="presentation-text">
+                Chez NetCorp, notre objectif est clair: Offrir des services informatiques qui aident nos clients à exceller dans leur domaine. Nous proposons une large gamme de services, incluant la création de sites web personnalisés, le développement d'applications, le community management, création de logo, de maquettes, de flyers, etc.
+            </p>
+            
+            <h4 class="presentation-subtitle">Création de site web</h4>
+            <p class="presentation-text">
+                Nous développons des sites sur mesure, conçus pour répondre aux attentes de votre public cible. Que vous souhaitiez un site vitrine, un site e-commerce ou une plateforme plus complexe, nous nous engageons à créer des expériences utilisateur fluides et attractives.
+            </p>
+            
+            <h4 class="presentation-subtitle">Création d'applications</h4>
+            <p class="presentation-text">
+                Notre équipe se spécialise également dans le développement d'applications mobiles et web, offrant des solutions innovantes qui facilitent vos opérations et améliorent l'expérience de vos clients. Chaque application est conçue pour être intuitive et adaptée à vos besoins spécifiques.
+            </p>
+            
+            <h4 class="presentation-subtitle">Community management</h4>
+            <p class="presentation-text">
+                Nous savons que la présence en ligne sur les réseaux sociaux est essentielle pour accroître la visibilité de votre entreprise. C'est pourquoi nous proposons des services de community management, en créant du contenu engageant qui reflète votre identité de marque tout en favorisant votre interaction avec votre audience.
+            </p>
+            
+            <h4 class="presentation-subtitle">Identité visuelle</h4>
+            <p class="presentation-text">
+                La création de logo, de maquette et de flyers fait également partie de notre expertise. Nous croyons qu'une image de marque forte est cruciale pour se démarquer. Nos designers travaillent en étroite collaboration avec vous pour créer des visuels percutants qui attirent et captivent votre audience. Chaque projet est conçu pour transmettre votre message de manière claire et mémorable.
+            </p>
+            
+            <h1 class="presentation-title">NOTRE ENGAGEMENT</h1>
+            <p class="presentation-text">
+                Chez NetCorp, nous nous engageons à écouter attentivement vos besoins et à vous fournir des solutions sur mesure qui améliorent votre efficacité et renforceront votre position sur le marché. En choisissant de travailler avec nous, vous bénéficiez d'un partenaire fiable, dédié à la réussite de votre projet.
+                
+                Nous croyons que la technologie doit être un levier de croissance pour les entreprises. Notre objectif est de vous accompagner à chaque étape de votre transformation numérique, en vous offrant un support constant et des conseils d'expert.
+                
+                En résumé, notre vision chez NetCorp est de devenir le partenaire privilégié des entreprises en quête d'innovation numérique en leur apportant des solutions complètes et personnalisées pour les aider à prospérer dans une économie digitale en constante évolution.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h1 class="faq-section-title">FAQ – Questions Fréquentes</h1>
+            <p class="intro">Retrouvez ici les réponses aux questions les plus posées sur nos services, nos méthodes de travail et notre accompagnement.</p>
+
+            <h2 class="faq-category">À propos de NetCorp</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Qu'est-ce que NetCorp ?</button>
+                <div class="faq-answer">
+                    <p>NetCorp est une entreprise spécialisée dans les services informatiques, accompagnant les entreprises dans leur transformation numérique en proposant des solutions innovantes, sur mesure et accessibles.</p>
+                    <img src="faq2.jpeg" alt="Équipe NetCorp au travail">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">À qui s'adressent vos services ?</button>
+                <div class="faq-answer">
+                    <p>Nos services s'adressent à tout type d'entreprise : start-ups, PME, institutions, associations ou particuliers souhaitant se professionnaliser.</p>
+                    <img src="faq3.jpeg" alt="Diversité des clients NetCorp">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Comment commencer un projet avec vous ?</button>
+                <div class="faq-answer">
+                    <p>Il vous suffit de nous contacter via notre formulaire ou par email. Nous discuterons de vos besoins, établirons un devis personnalisé, puis lancerons le projet après validation.</p>
+                    <img src="faq4.jpeg" alt="Signature de contrat avec NetCorp">
+                </div>
+            </div>
+
+            <h2 class="faq-category">Création de site web</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Quels types de sites proposez-vous ?</button>
+                <div class="faq-answer">
+                    <p>Nous créons des sites vitrines, des boutiques en ligne (e-commerce), des blogs, des portails d'entreprise et même des plateformes personnalisées.</p>
+                    <img src="faq5.jpeg" alt="Exemples de sites web créés par NetCorp">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Est-ce que vos sites sont responsives ?</button>
+                <div class="faq-answer">
+                    <p>Oui, tous nos sites s'adaptent automatiquement à tous les types d'écrans : mobile, tablette et ordinateur.</p>
+                    <img src="faq6.jpeg" alt="Site web responsive sur différents appareils">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Puis-je modifier mon site après sa création ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Nous pouvons intégrer un système de gestion de contenu (CMS) simple qui vous permet de modifier textes et images sans coder.</p>
+                    <img src="faq5.jpeg" alt="Interface d'administration de site web">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Offrez-vous aussi l'hébergement et le nom de domaine ?</button>
+                <div class="faq-answer">
+                    <p>Oui, nous proposons des packs complets avec hébergement sécurisé, nom de domaine, et certificat SSL.</p>
+                    <img src="faq7.jpeg" alt="Serveurs d'hébergement NetCorp">
+                </div>
+            </div>
+
+            <h2 class="faq-category">Développement d'application mobile</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Créez-vous des applications mobiles ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Nous développons des applications Android, iOS et web, selon vos besoins, avec une interface intuitive et moderne.</p>
+                    <img src="faq8.jpeg" alt="Applications mobiles développées par NetCorp">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Combien de temps prend la création d'une application ?</button>
+                <div class="faq-answer">
+                    <p>Le délai varie selon la complexité. Un projet simple peut prendre 2 à 4 semaines, tandis qu'un projet avancé peut nécessiter plusieurs mois.</p>
+                    <img src="faq9.jpeg" alt="Processus de développement d'application">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Offrez-vous un suivi après la livraison ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Nous assurons un support technique après la mise en ligne et proposons des forfaits de maintenance si nécessaire.</p>
+                    <img src="faq10.jpeg" alt="Support technique NetCorp">
+                </div>
+            </div>
+
+            <h2 class="faq-category">Community management</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Quelles plateformes gérez-vous ?</button>
+                <div class="faq-answer">
+                    <p>Nous gérons les comptes Facebook, Instagram, LinkedIn, TikTok et X (anciennement Twitter).</p>
+                    <img src="faq11.jpeg" alt="Plateformes de réseaux sociaux gérées par NetCorp">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Créez-vous le contenu à publier ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Nos community managers conçoivent des visuels et des textes adaptés à votre audience, en respectant votre identité de marque.</p>
+                    <img src="faq12.jpeg" alt="Création de contenu pour réseaux sociaux">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Puis-je suivre les résultats de vos actions ?</button>
+                <div class="faq-answer">
+                    <p>Bien sûr. Nous vous envoyons régulièrement des rapports d'analyse avec les performances de vos publications.</p>
+                    <img src="faq12.jpeg" alt="Rapports d'analyse de performance">
+                </div>
+            </div>
+
+            <h2 class="faq-category">Création d'identité visuelle & design</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Proposez-vous la création de logos et flyers ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Nous créons des logos uniques, des maquettes web, des flyers, cartes de visite, et autres supports de communication.</p>
+                    <img src="faq13.jpeg" alt="Exemples de logos créés par NetCorp">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Puis-je demander plusieurs versions de mon logo ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Nous proposons plusieurs propositions et jusqu'à 3 retouches selon votre pack.</p>
+                    <img src="faq14.jpeg" alt="Différentes versions de logo">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Les fichiers finaux sont-ils livrés ?</button>
+                <div class="faq-answer">
+                    <p>Absolument. Vous recevez les fichiers HD dans les formats standards (PNG, JPG, PDF, SVG).</p>
+                    <img src="faq15.jpeg" alt="Livraison des fichiers finaux">
+                </div>
+            </div>
+
+            <h2 class="faq-category">Tarifs & devis</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Vos devis sont-ils gratuits ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Chaque devis est personnalisé selon votre projet, sans engagement.</p>
+                    <img src="16.jpeg" alt="Devis personnalisé NetCorp">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Quels sont vos tarifs ?</button>
+                <div class="faq-answer">
+                    <p>Nos prix varient selon le type de service. Contactez-nous pour un devis précis. Nous adaptons nos offres à tous les budgets.</p>
+                    <img src="faq17.jpeg" alt="Tarifs adaptés NetCorp">
+                </div>
+            </div>
+
+            <h2 class="faq-category">Support et sécurité</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">Fournissez-vous un support après la livraison ?</button>
+                <div class="faq-answer">
+                    <p>Oui. Nous restons disponibles pour toute assistance ou modification. Un contrat de maintenance peut aussi être mis en place.</p>
+                    <img src="faq18.jpeg" alt="Support client NetCorp">
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Mes données sont-elles en sécurité ?</button>
+                <div class="faq-answer">
+                    <p>Nous garantissons la confidentialité de toutes les données partagées. Des clauses de confidentialité peuvent être signées sur demande.</p>
+                    <img src="" alt="Sécurité des données NetCorp">
+                </div>
+            </div>
+
+            <div class="contact-link">
+                <p>Et si vous ne trouvez pas votre réponse ici ?</p>
+                <p>N'hésitez pas à <a href="index.html#contact">nous contacter</a> directement. Notre équipe est disponible pour répondre à toutes vos questions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="cta-title">Prêt à transformer votre entreprise avec une équipe passionnée à vos côtés ?</h2>
+        <a href="index.html#contact" class="cta-button">Démarrer un projet</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">NetCorp - Votre succès en ligne commence ici</p>
+        <p class="footer-contact">contact@netcorp.com | WhatsApp : +229 0158249458</p>
+        <p class="footer-contact">Abomey-Calavi, Bénin</p>
+    </footer>
+
+    <script>
+        // Script accordéon
+        const faqButtons = document.querySelectorAll(".faq-question");
+    
+        faqButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const answer = button.nextElementSibling;
+                button.classList.toggle("active");
+                answer.classList.toggle("open");
+            });
+        });
+    </script>
+</body>
+</html>

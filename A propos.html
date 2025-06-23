@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez l'équipe NetCorp - Développement web, marketing digital et cybersécurité à Abomey-Calavi">
+    <title>À Propos de NetCorp - L'équipe derrière votre succès digital</title>
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary-dark: #0D1B2A;
+            --primary-accent: #8A004F;
+            --secondary-accent: #D9006E;
+            --highlight: #FFA600;
+            --white: #FFFFFF;
+            --light-bg: #F4F4F4;
+            --text-dark: #1B033D;
+            --medium-gray: #6C757D;
+        }
+
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+	     scroll-behavior: smooth;
+	}
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background-color: var(--primary-accent);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-item {
+            margin: 0 1rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('a propos_back.jpeg') center/cover no-repeat;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+        }
+
+        .about-hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about-hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== BUTTONS ===== */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: var(--highlight);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== SECTIONS COMMON STYLES ===== */
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--highlight);
+            border-radius: 2px;
+        }
+
+        /* ===== STORY SECTION ===== */
+        .story-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+
+        .story-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .story-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .story-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .story-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team-section {
+            padding: 5rem 2rem;
+            background-color: var(--white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 5px solid var(--light-bg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .team-member:hover .member-image {
+            border-color: var(--highlight);
+            box-shadow: 0 8px 25px rgba(139, 0, 79, 0.2);
+        }
+
+        .member-name {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .member-role {
+            font-size: 1rem;
+            color: var(--primary-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== VALUES SECTION ===== */
+        .values-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-accent);
+        }
+
+        .value-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .value-description {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            color: var(--white);
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .footer-contact {
+            opacity: 0.8;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+           
+            .nav-list {
+        width: 100%;
+        height: 100%;
+        padding: 0%;
+        margin: 0%;
+        font-size: 0.7rem;
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-cta {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .nav-cta-button {
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-size: 0.7rem;
+        text-align: center;
+    }
+            
+            .about-hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .story-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+           <!-- <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>-->
+            <li class="nav-item"><a href="#" class="nav-link">A Propos</a></li>
+            <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="about-hero">
+        <div class="about-hero-content">
+            <h1 class="about-hero-title">L'équipe derrière votre succès digital</h1>
+            <p class="about-hero-subtitle">Découvrez les passionnés de technologie qui transforment vos idées en solutions numériques performantes.</p>
+            <a href="#team" class="cta-button">Rencontrer l'équipe</a>
+        </div>
+    </header>
+
+    <!-- Notre Histoire -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-content">
+                <h2 class="section-title">Notre Histoire</h2>
+                <p class="story-text">
+                    NetCorp est née d'une vision simple : offrir aux entreprises africaines des solutions digitales sur mesure, à la hauteur des standards internationaux. Fondée en 2024 par Victorien DEGLA, notre entreprise a pour vision de devenir un acteur clé du paysage numérique béninois.
+                </p>
+                <p class="story-text">
+                    De notre premier site web développé dans un petit bureau d'Abomey-Calavi à nos solutions complexes pour des clients internationaux, chaque étape a été marquée par notre engagement envers l'excellence technique et la satisfaction client.
+                </p>
+                <p class="story-text">
+                    Aujourd'hui, avec une équipe de 8 experts passionnés, nous combinons créativité, expertise technique et compréhension approfondie des enjeux locaux pour offrir des solutions qui font la différence.
+                </p>
+            </div>
+            <div class="story-image">
+                <img src="NetCorp Logo.png" alt="Bureau NetCorp">
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Équipe -->
+    <section id="team" class="team-section">
+        <h2 class="section-title">Notre Équipe</h2>
+        <div class="team-grid">
+            <!-- Victorien DEGLA -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="Victorien.png" alt="Victorien DEGLA">
+                </div>
+                <h3 class="member-name">Victorien DEGLA</h3>
+                <p class="member-role">Fondateur & PDG</p>
+                <p class="member-bio">Développeur full stack et stratège digital, Victorien combine expertise technique et vision entrepreneuriale pour guider NetCorp vers l'excellence.</p>
+            </div>
+            
+            <!-- Chef de projet -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="Aurel.jpg" alt="Chef de projet">
+                </div>
+                <h3 class="member-name">AKOUTA Aurel</h3>
+                <p class="member-role">Chef de Projet & Responsable Administratif</p>
+                <p class="member-bio">Garant de la fluidité opérationnelle, Aurel veille à ce que chaque projet respecte délais, budget et exigences qualité.</p>
+            </div>
+            
+            <!-- Développeurs Backend -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="" alt="Développeur Backend">
+                </div>
+                <h3 class="member-name">HOUNKPE Carlos Fabrice</h3>
+                <p class="member-role">Développeur Backend Senior</p>
+                <p class="member-bio">Expert en architecture serveur et bases de données, Fabrice construit les fondations solides de nos applications.</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="" alt="Développeur Backend">
+                </div>
+                <h3 class="member-name">BESSANH Shadrak</h3>
+                <p class="member-role">Développeur Backend</p>
+                <p class="member-bio">Passionné par les solutions évolutives, Shadrak optimise nos systèmes pour gérer des charges importantes.</p>
+            </div>
+            
+            <!-- Développeurs Frontend -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="Béatrice 1.jpg" alt="Développeur Frontend">
+                </div>
+                <h3 class="member-name">SEGNIAGBETO Béatrice</h3>
+                <p class="member-role">Développeuse Frontend</p>
+                <p class="member-bio">Artiste du code, Béatrice transforme les designs en interfaces intuitives et esthétiques.</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="Cédric.jpg" alt="Développeur Frontend">
+                </div>
+                <h3 class="member-name">BADA Cédric</h3>
+                <p class="member-role">Développeur Frontend</p>
+                <p class="member-bio">Spécialiste des expériences utilisateur fluides, Cédric crée des interfaces qui captivent et convertissent.</p>
+            </div>
+            
+            <!-- Responsable Sécurité -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="Jaurès.jpg" alt="Responsable Sécurité">
+                </div>
+                <h3 class="member-name">DJANGUEDE Jean Jaurès</h3>
+                <p class="member-role">Responsable Cybersécurité</p>
+                <p class="member-bio">Veilleur infatigable, Jaurès protège nos solutions contre les menaces numériques et garantit la confidentialité des données.</p>
+            </div>
+            
+            <!-- Designer UX -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="" alt="Designer UX">
+                </div>
+                <h3 class="member-name">xxxx</h3>
+                <p class="member-role">Designer UX/UI</p>
+                <p class="member-bio">Architecte de l'expérience utilisateur, xxx conçoit des parcours fluides qui répondent aux besoins des utilisateurs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Valeurs -->
+    <section class="values-section">
+        <h2 class="section-title">Nos Valeurs Fondamentales</h2>
+        <div class="values-container">
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3 class="value-title">Innovation Continue</h3>
+                    <p class="value-description">Nous explorons constamment les nouvelles technologies pour offrir des solutions à la pointe du progrès tout en restant accessibles.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3 class="value-title">Partage des Connaissances</h3>
+                    <p class="value-description">Nous croyons en la force du collectif et partageons notre expertise pour faire grandir ensemble l'écosystème numérique africain.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3 class="value-title">Orientation Résultats</h3>
+                    <p class="value-description">Chaque ligne de code, chaque design et chaque stratégie est pensée pour générer des résultats tangibles pour votre entreprise.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3 class="value-title">Enracinement Local</h3>
+                    <p class="value-description">Nous comprenons les défis spécifiques des entreprises africaines et créons des solutions adaptées à notre contexte.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🔐</div>
+                    <h3 class="value-title">Intégrité</h3>
+                    <p class="value-description">Transparence, éthique et confidentialité sont au cœur de chacune de nos interactions et solutions.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3 class="value-title">Ambition Collective</h3>
+                    <p class="value-description">Nous ne visons pas seulement votre succès, mais la transformation numérique de toute une région.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="cta-title">Prêt à transformer votre entreprise avec une équipe passionnée à vos côtés ?</h2>
+        <a href="#contact" class="cta-button">Démarrer un projet</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">NetCorp - Votre succès en ligne commence ici</p>
+        <p class="footer-contact">contact@netcorp.com | WhatsApp : +229 0158249458</p>
+        <p class="footer-contact" style="margin-top: 1rem;">Abomey-Calavi, Bénin</p>
+    </footer>
+</body>
+</html>

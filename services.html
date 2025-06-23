@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos services de développement web, marketing digital et cybersécurité - NetCorp Abomey-Calavi">
+    <title>Nos Services - NetCorp | Développement Web, Marketing Digital, Cybersécurité</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Styles supplémentaires spécifiques à la page des services */
+        
+        /* Hero spécifique */
+        .services-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('services_back.jpeg') center/cover no-repeat;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background-attachment: fixed;
+        }
+        
+        /* Section détaillée des services */
+        .service-detail {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+        
+        .service-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .service-icon-large {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-accent);
+        }
+        
+        .service-detail-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .service-detail-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--text-dark);
+        }
+        
+        .service-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .service-steps {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .service-offerings {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .sub-section-title {
+            font-size: 1.8rem;
+            color: var(--primary-accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .sub-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--highlight);
+        }
+        
+        .step-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            background-color: var(--primary-accent);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .step-description {
+            color: var(--text-dark);
+        }
+        
+        .offerings-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .offering-item {
+            background: var(--white);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .offering-item i {
+            color: var(--primary-accent);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 25px;
+        }
+        
+        .service-cta-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        /* Section de comparaison */
+        .comparison-section {
+            padding: 5rem 2rem;
+            background: url('faq2.jpeg') no-repeat center ;
+            color: var(--white);
+        }
+        
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .comparison-card {
+            background: var(--primary-accent);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .comparison-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--highlight);
+        }
+        
+        .comparison-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        
+        .comparison-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-list li i {
+            margin-right: 10px;
+            color: var(--highlight);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--primary-dark);
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-dark);
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-hero {
+                min-height: 50vh;
+            }
+            
+            .service-detail-title {
+                font-size: 2rem;
+            }
+            
+            .service-content {
+                flex-direction: column;
+            }
+            
+            .faq-question {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+           <!-- <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>-->
+            <li class="nav-item"><a href="A propos.html" class="nav-link">À Propos</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+            <!-- Bouton CTA dans la navigation -->
+            <li class="nav-item nav-cta">
+                <a href="#contact" class="nav-cta-button">
+                    <i class="fas fa-calendar-check"></i> Audit Gratuit
+                </a>
+            </li>
+        </ul>
+        
+        <!-- Bouton hamburger pour mobile -->
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- Bouton WhatsApp flottant -->
+    <div class="whatsapp-cta">
+        <a href="https://wa.me/2290158249458" target="_blank" class="whatsapp-button">
+            <i class="fab fa-whatsapp"></i> Contact WhatsApp
+        </a>
+    </div>
+
+    <!-- Hero Section pour les services -->
+    <header class="services-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Nos Services Professionnels</h1>
+            <p class="hero-subtitle">Solutions digitales sur mesure pour propulser votre entreprise</p>
+            <a href="#contact" class="cta-button hero-cta">
+                <i class="fas fa-gift"></i> Demandez votre audit gratuit
+            </a>
+        </div>
+    </header>
+
+
+<style>
+    /* Services Section */
+    .services-section {
+        padding: 5rem 2rem;
+        background-color: var(--light-bg);
+        position: relative;
+    }
+
+    .services-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background-color: var(--primary-accent);
+        margin: 1rem auto;
+        border-radius: 2px;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--text-dark);
+        max-width: 700px;
+        margin: 0 auto 3rem;
+        opacity: 0.9;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .service-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .service-icon {
+        width: 70px;
+        height: 70px;
+        background: rgba(138, 0, 79, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        color: var(--primary-accent);
+        font-size: 1.8rem;
+    }
+
+    .service-title {
+        font-size: 1.4rem;
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+    }
+
+    .service-description {
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .service-features {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .service-features li {
+        margin-bottom: 0.7rem;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .service-features i {
+        color: var(--success);
+        margin-right: 8px;
+        font-size: 0.9rem;
+        margin-top: 3px;
+    }
+
+    .service-cta {
+        display: inline-block;
+        background: var(--primary-accent);
+        color: var(--white);
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        margin-top: auto;
+        border: 2px solid var(--primary-accent);
+    }
+
+    .service-cta:hover {
+        background: transparent;
+        color: var(--primary-accent);
+    }
+
+    .service-cta i {
+        margin-right: 8px;
+    }
+
+    @media (max-width: 768px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .service-card {
+            padding: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+    <!-- Section Développement Web -->
+    <section class="service-detail">
+        <div class="service-container">
+            <div class="service-header">
+                <div class="service-icon-large">💻</div>
+                <h2 class="service-detail-title">Développement Web</h2>
+                <p class="service-detail-description">Des sites web performants, esthétiques et optimisés pour convertir vos visiteurs en clients fidèles.</p>
+            </div>
+            
+            <div class="service-content">
+                <div class="service-steps">
+                    <h3 class="sub-section-title">Notre Processus</h3>
+                    
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Analyse & Conception</h4>
+                            <p class="step-description">Compréhension de vos objectifs et conception d'une architecture optimale.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Développement</h4>
+                            <p class="step-description">Création du site avec les technologies les plus modernes et performantes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Tests & Optimisation</h4>
+                            <p class="step-description">Vérification complète et optimisation pour tous les appareils.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Lancement & Formation</h4>
+                            <p class="step-description">Mise en ligne et formation pour une prise en main autonome.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-offerings">
+                    <h3 class="sub-section-title">Nos Solutions</h3>
+                    
+                    <ul class="offerings-list">
+                        <li class="offering-item">
+                            <i class="fas fa-laptop"></i>
+                            <span>Sites vitrines professionnels</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Boutiques e-commerce</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Applications web responsive</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Refonte de sites existants</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-cogs"></i>
+                            <span>Plateformes sur mesure</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Optimisation de performance</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-cta-container">
+                <a href="#contact" class="cta-button">
+                    <i class="fas fa-code"></i> Demander un site web
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Marketing Digital -->
+    <section class="service-detail" style="background-color: #f9f9f9;">
+        <div class="service-container">
+            <div class="service-header">
+                <div class="service-icon-large">📱</div>
+                <h2 class="service-detail-title">Marketing Digital</h2>
+                <p class="service-detail-description">Stratégies digitales performantes pour augmenter votre visibilité et générer plus de clients.</p>
+            </div>
+            
+            <div class="service-content">
+                <div class="service-steps">
+                    <h3 class="sub-section-title">Notre Approche</h3>
+                    
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Audit & Analyse</h4>
+                            <p class="step-description">Évaluation de votre présence digitale et de votre marché.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Stratégie Personnalisée</h4>
+                            <p class="step-description">Définition d'un plan d'action adapté à vos objectifs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Mise en Œuvre</h4>
+                            <p class="step-description">Exécution des campagnes et optimisation en temps réel.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Suivi & Reporting</h4>
+                            <p class="step-description">Analyse des résultats et ajustements continus.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-offerings">
+                    <h3 class="sub-section-title">Nos Services</h3>
+                    
+                    <ul class="offerings-list">
+                        <li class="offering-item">
+                            <i class="fas fa-search"></i>
+                            <span>SEO - Référencement naturel</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-ad"></i>
+                            <span>Publicité en ligne (SEA, réseaux sociaux)</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email marketing automatisé</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analyse de données et reporting</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-users"></i>
+                            <span>Gestion de communauté</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-video"></i>
+                            <span>Stratégie de contenu</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-cta-container">
+                <a href="#contact" class="cta-button">
+                    <i class="fas fa-chart-line"></i> Booster mes ventes
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Cybersécurité -->
+    <section class="service-detail">
+        <div class="service-container">
+            <div class="service-header">
+                <div class="service-icon-large">🔒</div>
+                <h2 class="service-detail-title">Cybersécurité</h2>
+                <p class="service-detail-description">Protégez vos données sensibles et sécurisez votre infrastructure numérique contre les menaces.</p>
+            </div>
+            
+            <div class="service-content">
+                <div class="service-steps">
+                    <h3 class="sub-section-title">Notre Méthodologie</h3>
+                    
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Évaluation des Risques</h4>
+                            <p class="step-description">Identification des vulnérabilités de votre système.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Plan de Sécurité</h4>
+                            <p class="step-description">Définition des mesures de protection adaptées.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Mise en Place</h4>
+                            <p class="step-description">Déploiement des solutions de sécurité.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4 class="step-title">Surveillance & Maintenance</h4>
+                            <p class="step-description">Protection continue et mises à jour régulières.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-offerings">
+                    <h3 class="sub-section-title">Nos Solutions</h3>
+                    
+                    <ul class="offerings-list">
+                        <li class="offering-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Audits de sécurité complets</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-lock"></i>
+                            <span>Protection contre les ransomwares</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Formation des employés</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-database"></i>
+                            <span>Sauvegarde et récupération de données</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Sécurisation des réseaux</span>
+                        </li>
+                        <li class="offering-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Sécurité des applications mobiles</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="service-cta-container">
+                <a href="#contact" class="cta-button">
+                    <i class="fas fa-shield-alt"></i> Sécuriser mon entreprise
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section de comparaison -->
+    <section class="comparison-section">
+        <div class="comparison-container">
+            <h2 class="section-title section-title-light">Pourquoi choisir NetCorp ?</h2>
+            
+
+
+
+
+            
+            
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h3 class="comparison-title">Solutions standards</h3>
+                    <ul class="comparison-list">
+                        <li><i class="fas fa-times"></i> Approche générique</li>
+                        <li><i class="fas fa-times"></i> Support limité</li>
+                        <li><i class="fas fa-times"></i> Peu d'adaptation locale</li>
+                        <li><i class="fas fa-times"></i> Résultats imprévisibles</li>
+                        <li><i class="fas fa-times"></i> Pas de suivi continu</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3 class="comparison-title">NetCorp</h3>
+                    <ul class="comparison-list">
+                        <li><i class="fas fa-check"></i> Solutions sur mesure</li>
+                        <li><i class="fas fa-check"></i> Accompagnement complet</li>
+                        <li><i class="fas fa-check"></i> Expertise locale</li>
+                        <li><i class="fas fa-check"></i> Résultats garantis</li>
+                        <li><i class="fas fa-check"></i> Suivi et optimisation</li>
+                        <li><i class="fas fa-check"></i> Formation incluse</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section FAQ -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 class="section-title">Questions Fréquentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Combien de temps faut-il pour développer un site web ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Le délai de développement dépend de la complexité de votre projet. En moyenne :</p>
+                    <ul>
+                        <li>Site vitrine : 2-4 semaines</li>
+                        <li>Site e-commerce : 4-8 semaines</li>
+                        <li>Application web sur mesure : 8-16 semaines</li>
+                    </ul>
+                    <p>Nous établissons ensemble un calendrier précis lors de notre premier entretien.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Proposez-vous un accompagnement après la livraison ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolument ! Tous nos projets incluent :</p>
+                    <ul>
+                        <li>1 mois de support gratuit après livraison</li>
+                        <li>Formation complète à l'utilisation de votre solution</li>
+                        <li>Options de maintenance mensuelle ou annuelle</li>
+                        <li>Accès à notre équipe pour les évolutions futures</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Travaillez-vous avec des entreprises en dehors du Bénin ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Oui, nous travaillons avec des clients partout dans le monde. Nos services sont particulièrement adaptés aux :</p>
+                    <ul>
+                        <li>Entreprises africaines cherchant une expertise locale</li>
+                        <li>Startups internationales recherchant un développement de qualité à prix compétitif</li>
+                        <li>ONG opérant en Afrique de l'Ouest</li>
+                    </ul>
+                    <p>Nous communiquons principalement en français et anglais.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment se déroule l'audit gratuit ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Notre audit gratuit est une séance de 45 minutes où nous :</p>
+                    <ul>
+                        <li>Analysons votre situation actuelle</li>
+                        <li>Identifions vos forces et points d'amélioration</li>
+                        <li>Définissons des pistes d'optimisation concrètes</li>
+                        <li>Vous proposons un plan d'action personnalisé</li>
+                    </ul>
+                    <p>Cet audit se fait par appel vidéo ou en présentiel à Abomey-Calavi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Prêt à transformer votre présence digitale ?</h2>
+            <p class="cta-subtitle">Profitez de notre expertise pour atteindre vos objectifs</p>
+            <a href="#contact" class="cta-button cta-main">
+                <i class="fas fa-rocket"></i> Commencer maintenant
+            </a>
+            <p class="cta-guarantee">
+                <i class="fas fa-shield-alt"></i> Satisfaction garantie ou remboursé
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Demandez votre audit gratuit</h2>
+        <p class="contact-subtitle">Remplissez le formulaire et nous vous contacterons dans les 24h</p>
+        <form class="contact-form">
+            <input type="text" class="form-input" placeholder="Nom & Prénom" required>
+            <input type="email" class="form-input" placeholder="Email" required>
+            <input type="tel" class="form-input" placeholder="WhatsApp">
+            <select class="form-select">
+                <option>Quel service vous intéresse ?</option>
+                <option>Développement Web</option>
+                <option>Marketing Digital</option>
+                <option>Cybersécurité</option>
+                <option>Plusieurs services</option>
+            </select>
+            <textarea class="form-textarea" placeholder="Décrivez votre projet (optionnel)"></textarea>
+            <button type="submit" class="submit-button">
+                <i class="fas fa-paper-plane"></i> Envoyer ma demande
+            </button>
+        </form>
+        <!-- Bouton alternatif -->
+        <div class="contact-alt-cta">
+            <p>Préférez-vous discuter directement ?</p>
+            <a href="tel:+2290158249458" class="phone-cta">
+                <i class="fas fa-phone-alt"></i> Appelez-nous: +229 0158249458
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">NetCorp - Votre succès en ligne commence ici</p>
+        <p class="footer-contact">contact@netcorp.com | WhatsApp : +229 0158249458</p>
+        <div class="footer-cta">
+            <a href="#contact" class="cta-button footer-button">
+                <i class="fas fa-calendar-alt"></i> Planifier un appel
+            </a>
+        </div>
+    </footer>
+    
+    <script>
+        // Menu hamburger
+        const hamburger = document.querySelector(".hamburger");
+        const navList = document.querySelector(".nav-list");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navList.classList.toggle("active");
+        });
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+                       
