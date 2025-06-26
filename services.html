@@ -2,24 +2,247 @@
 <html lang="fr">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-849SRDCFF5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-849SRDCFF5');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-849SRDCFF5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-849SRDCFF5');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Découvrez nos services de développement web, marketing digital et cybersécurité - NetCorp Abomey-Calavi">
     <title>Nos Services - NetCorp | Développement Web, Marketing Digital, Cybersécurité</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Styles supplémentaires spécifiques à la page des services */
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary-dark: #0D1B2A;
+            --primary-accent: #a71e6b;
+            --secondary-accent: #D9006E;
+            --highlight: #FFA600;
+            --white: #FFFFFF;
+            --light-bg: #F4F4F4;
+            --text-dark: #1B033D;
+            --success: #28a745;
+            --hover-elevate: translateY(-6px);
+            --hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* ===== RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            background-color: var(--primary-accent);
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar .nav-link a.active {
+            background-color: var(--highlight);
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .nav-item {
+            margin: 0 0.8rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Logo NetCorp */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            margin-right: 1.5rem;
+        }
         
-        /* Hero spécifique */
+        .logo-net {
+            color: var(--white);
+            position: relative;
+        }
+        
+        .logo-net::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--highlight);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover .logo-net::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .logo-corp {
+            color: var(--highlight);
+            position: relative;
+        }
+        
+        .logo-corp::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--white);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover .logo-corp::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Nouveau bouton CTA dans la navigation */
+        .nav-cta {
+            margin-left: 1rem;
+        }
+
+        .nav-cta-button {
+            display: inline-block;
+            background-color: var(--highlight);
+            color: var(--primary-dark);
+            padding: 0.7rem 1.3rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            border: 2px solid var(--highlight);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-cta-button:hover {
+            background-color: transparent;
+            color: var(--white);
+            transform: var(--hover-elevate);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .nav-cta-button i {
+            margin-right: 6px;
+        }
+
+        /* Bouton hamburger */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        /* Bouton WhatsApp flottant */
+        .whatsapp-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
+            transition: var(--transition-smooth);
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: var(--hover-elevate);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.7);
+        }
+
+        .whatsapp-button i {
+            font-size: 1.3rem;
+            margin-right: 8px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
         .services-hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('services_back.jpeg') center/cover no-repeat;
@@ -33,8 +256,82 @@
             position: relative;
             background-attachment: fixed;
         }
-        
-        /* Section détaillée des services */
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* ===== BUTTONS ===== */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--highlight);
+            color: var(--primary-dark);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+            border: 2px solid var(--highlight);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-accent);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(2px);
+        }
+
+        .cta-button i {
+            margin-right: 10px;
+        }
+
+        /* Bouton CTA spécifique pour le hero */
+        .hero-cta {
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--highlight);
+            font-style: italic;
+        }
+
+        /* ===== SERVICES SECTION ===== */
         .service-detail {
             padding: 5rem 2rem;
             background-color: var(--light-bg);
@@ -54,12 +351,21 @@
             font-size: 4rem;
             margin-bottom: 1rem;
             color: var(--primary-accent);
+            transition: transform 0.5s ease;
         }
         
         .service-detail-title {
             font-size: 2.5rem;
             color: var(--primary-dark);
             margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .service-detail-title.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .service-detail-description {
@@ -67,6 +373,14 @@
             max-width: 800px;
             margin: 0 auto 2rem;
             color: var(--text-dark);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+        
+        .service-detail-description.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .service-content {
@@ -112,11 +426,19 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: flex-start;
-            transition: transform 0.3s;
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .step-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .step-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
         
         .step-number {
@@ -132,6 +454,11 @@
             font-size: 1.2rem;
             margin-right: 1rem;
             flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-card:hover .step-number {
+            transform: scale(1.1);
         }
         
         .step-content {
@@ -161,6 +488,19 @@
             display: flex;
             align-items: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .offering-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .offering-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(167, 30, 107, 0.05);
         }
         
         .offering-item i {
@@ -168,24 +508,32 @@
             font-size: 1.2rem;
             margin-right: 15px;
             width: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .offering-item:hover i {
+            transform: scale(1.2);
         }
         
         .service-cta-container {
             text-align: center;
             margin-top: 2rem;
         }
-        
+
         /* Section de comparaison */
         .comparison-section {
             padding: 5rem 2rem;
-            background: url('faq2.jpeg') no-repeat center ;
+            background: var(--primary-accent);
             color: var(--white);
+            position: relative;
+            overflow: hidden;
         }
         
         .comparison-container {
             max-width: 1200px;
             margin: 0 auto;
-
+            position: relative;
+            z-index: 2;
         }
         
         .comparison-grid {
@@ -196,12 +544,25 @@
         }
         
         .comparison-card {
-            background: var(--primary-accent);
+            background: rgba(255, 255, 255, 0.1);
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .comparison-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .comparison-card:hover {
+            transform: scale(1.03);
+            background: rgba(255, 255, 255, 0.15);
         }
         
         .comparison-title {
@@ -231,7 +592,7 @@
             margin-right: 10px;
             color: var(--highlight);
         }
-        
+
         /* FAQ Section */
         .faq-section {
             padding: 5rem 2rem;
@@ -249,6 +610,12 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: var(--transition-smooth);
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
         
         .faq-question {
@@ -279,9 +646,295 @@
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
         }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-main {
+            padding: 1.3rem 3.5rem;
+            font-size: 1.4rem;
+            background: transparent;
+            color: var(--white);
+            margin-top: 1.5rem;
+            border: 2px solid var(--white);
+        }
+
+        .cta-main:hover {
+            background: var(--white);
+            color: var(--primary-accent);
+        }
+
+        .cta-guarantee {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-guarantee i {
+            margin-right: 8px;
+            color: var(--highlight);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-bg);
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            color: var(--primary-accent);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--white);
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(138, 0, 79, 0.1);
+            outline: none;
+            transform: scale(1.02);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--highlight);
+            color: var(--primary-dark);
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-button:hover {
+            background-color: var(--secondary-accent);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bouton téléphone dans la section contact */
+        .contact-alt-cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .phone-cta {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .phone-cta:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .phone-cta i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .footer-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .footer-contact {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-cta {
+            margin-top: 1.5rem;
+        }
+
+        .footer-button {
+            background-color: var(--highlight);
+            color: var(--primary-dark);
+            padding: 0.9rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-button:hover {
+            background-color: var(--primary-accent);
+            color: var(--white);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .logo {
+                font-size: 1.6rem;
+            }
+            
+            .nav-item {
+                margin: 0 0.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.9rem;
+            }
+            
+            .nav-cta-button {
+                padding: 0.6rem 1.1rem;
+                font-size: 0.85rem;
+            }
+        }
         
-        /* Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .hamburger {
+                display: block;
+                position: relative;
+                z-index: 1000;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .nav-list {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background-color: var(--primary-accent);
+                padding-top: 90px;
+                transition: all 0.5s ease;
+                z-index: 999;
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 2rem;
+            }
+            
+            .nav-list.active {
+                right: 0;
+            }
+            
+            .nav-item {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: left;
+            }
+            
+            .nav-cta {
+                margin-left: 0;
+                margin-top: 1rem;
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .nav-cta-button {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
             .services-hero {
                 min-height: 50vh;
             }
@@ -300,20 +953,25 @@
         }
     </style>
     <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "s47y6eznrm");
-</script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "s47y6eznrm");
+    </script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
+        <!-- Logo NetCorp -->
+        <a href="index.html" class="logo">
+            <span class="logo-net">Net</span>
+            <span class="logo-corp">Corp</span>
+        </a>
+        
         <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-           <!-- <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>-->
             <li class="nav-item"><a href="A propos.html" class="nav-link">À Propos</a></li>
             <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
@@ -350,154 +1008,6 @@
             </a>
         </div>
     </header>
-
-
-<style>
-    /* Services Section */
-    .services-section {
-        padding: 5rem 2rem;
-        background-color: var(--light-bg);
-        position: relative;
-    }
-
-    .services-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .section-title {
-        font-size: 2.5rem;
-        color: var(--primary-dark);
-        margin-bottom: 1rem;
-        position: relative;
-    }
-
-    .section-title::after {
-        content: '';
-        display: block;
-        width: 80px;
-        height: 4px;
-        background-color: var(--primary-accent);
-        margin: 1rem auto;
-        border-radius: 2px;
-    }
-
-    .section-subtitle {
-        font-size: 1.2rem;
-        color: var(--text-dark);
-        max-width: 700px;
-        margin: 0 auto 3rem;
-        opacity: 0.9;
-    }
-
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-
-    .service-card {
-        background: var(--white);
-        border-radius: 10px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    }
-
-    .service-icon {
-        width: 70px;
-        height: 70px;
-        background: rgba(138, 0, 79, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1.5rem;
-        color: var(--primary-accent);
-        font-size: 1.8rem;
-    }
-
-    .service-title {
-        font-size: 1.4rem;
-        color: var(--primary-dark);
-        margin-bottom: 1rem;
-    }
-
-    .service-description {
-        color: var(--text-dark);
-        margin-bottom: 1.5rem;
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
-
-    .service-features {
-        list-style: none;
-        text-align: left;
-        margin-bottom: 2rem;
-        padding: 0 1rem;
-    }
-
-    .service-features li {
-        margin-bottom: 0.7rem;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: flex-start;
-    }
-
-    .service-features i {
-        color: var(--success);
-        margin-right: 8px;
-        font-size: 0.9rem;
-        margin-top: 3px;
-    }
-
-    .service-cta {
-        display: inline-block;
-        background: var(--primary-accent);
-        color: var(--white);
-        padding: 0.8rem 1.5rem;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        margin-top: auto;
-        border: 2px solid var(--primary-accent);
-    }
-
-    .service-cta:hover {
-        background: transparent;
-        color: var(--primary-accent);
-    }
-
-    .service-cta i {
-        margin-right: 8px;
-    }
-
-    @media (max-width: 768px) {
-        .services-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .service-card {
-            padding: 1.5rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-        }
-    }
-</style>
 
     <!-- Section Développement Web -->
     <section class="service-detail">
@@ -762,12 +1272,6 @@
         <div class="comparison-container">
             <h2 class="section-title section-title-light">Pourquoi choisir NetCorp ?</h2>
             
-
-
-
-
-            
-            
             <div class="comparison-grid">
                 <div class="comparison-card">
                     <h3 class="comparison-title">Solutions standards</h3>
@@ -922,35 +1426,83 @@
     </footer>
     
     <script>
-        // Menu hamburger
-        const hamburger = document.querySelector(".hamburger");
-        const navList = document.querySelector(".nav-list");
-
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navList.classList.toggle("active");
-        });
-
-        // FAQ Accordion
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                faqItem.classList.toggle('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation du contenu hero
+            setTimeout(() => {
+                document.querySelector('.hero-content').classList.add('animate');
+            }, 300);
+            
+            // Animation des éléments au défilement
+            function animateOnScroll() {
+                const elements = document.querySelectorAll(
+                    '.service-detail-title, .service-detail-description, ' +
+                    '.step-card, .offering-item, .comparison-card'
+                );
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight * 0.8;
+                    
+                    if(elementPosition < screenPosition) {
+                        element.classList.add('animate');
+                    }
+                });
+            }
+            
+            // Initial animation check
+            animateOnScroll();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Gestion du menu hamburger pour mobile
+            document.querySelector('.hamburger').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.querySelector('.nav-list').classList.toggle('active');
+                
+                // Empêcher le défilement du corps lorsque le menu est ouvert
+                if (this.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
             });
-        });
+            
+            // Fermer le menu mobile lors du clic sur un lien
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.querySelector('.hamburger').classList.remove('active');
+                    document.querySelector('.nav-list').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    faqItem.classList.toggle('active');
+                });
+            });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile si ouvert
+                    document.querySelector('.hamburger').classList.remove('active');
+                    document.querySelector('.nav-list').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
         });
     </script>
 </body>
 </html>
-                       
