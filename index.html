@@ -815,7 +815,6 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
-        
 
         /* ===== FOOTER ===== */
         .footer {
@@ -955,7 +954,7 @@
         <!-- Logo NetCorp animé -->
         <a href="#" class="logo">
             <div class="logo-container">
-             <img src="./Logo2.jpg" width="100%" alt="Logo NetCorp" class="logo-icon">   
+                
             </div>
         </a>
         
@@ -972,8 +971,9 @@
                 </a>
             </li>
             <li class="nav-item nav-cta">
-                <a href="#contact" class="nav-cta-button">
-                     <i class="fas fa-calendar-alt">Prendre rendez-vous
+                <a href="#rdvModule" class="nav-cta-button">
+                    <i class="fas fa-calendar-alt"></i>
+                    Prendre RDV
                 </a>
             </li>
         </ul>
@@ -1436,114 +1436,9 @@
     </div>
   </div>
 </section>
-</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p class="footer-text">NetCorp - Votre succès en ligne commence ici</p>
-        <p class="footer-contact">contact@netcorp.com | WhatsApp : +229 0158249458</p>
-        <!-- Dernier CTA dans le footer -->
-        <div class="footer-cta">
-            <a href="#contact" class="cta-button footer-button">
-                <i class="fas fa-calendar-alt"></i> Planifier un appel
-            </a>
-        </div>
-    </footer>
-    
-    <!-- Scripts -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animation du contenu hero
-            setTimeout(() => {
-                document.querySelector('.hero-content').classList.add('animate');
-            }, 300);
-            
-            // Animation des éléments au défilement
-            function animateOnScroll() {
-                const elements = document.querySelectorAll('.section-title, .reason-card, .service-card, .testimonial');
-                
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight * 0.8;
-                    
-                    if(elementPosition < screenPosition) {
-                        element.classList.add('animate');
-                    }
-                });
-            }
-            
-            // Initial animation check
-            animateOnScroll();
-            
-            // Listen for scroll events
-            window.addEventListener('scroll', animateOnScroll);
-            
-            // Gestion du menu hamburger pour mobile
-            document.querySelector('.hamburger').addEventListener('click', function() {
-                this.classList.toggle('active');
-                document.querySelector('.nav-list').classList.toggle('active');
-                
-                // Empêcher le défilement du corps lorsque le menu est ouvert
-                if (this.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // Fermer le menu mobile lors du clic sur un lien
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    document.querySelector('.hamburger').classList.remove('active');
-                    document.querySelector('.nav-list').classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            });
-            
-            // Animation des cartes de services au survol
-            document.querySelectorAll('.service-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                });
-            });
-            
-            // Validation de formulaire
-            const form = document.getElementById('whatsappForm');
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const serviceSelect = document.getElementById('service');
-            
-            nameInput.addEventListener('input', function() {
-                if(this.value.length > 2) {
-                    this.style.borderColor = '#28a745';
-                } else {
-                    this.style.borderColor = '#dc3545';
-                }
-            });
-            
-            emailInput.addEventListener('input', function() {
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if(emailPattern.test(this.value)) {
-                    this.style.borderColor = '#28a745';
-                } else {
-                    this.style.borderColor = '#dc3545';
-                }
-            });
-            
-            
-            serviceSelect.addEventListener('change', function() {
-                if(this.value !== "Quel service vous intéresse ?") {
-                    this.style.borderColor = '#28a745';
-                } else {
-                    this.style.borderColor = '#dc3545';
-                }
-            });
-            const serviceSelect = document.getElementById("serviceSelect");
+<script>
+const serviceSelect = document.getElementById("serviceSelect");
 const champsDynamiques = document.getElementById("champsDynamiques");
 
 // Calendrier maison inspiré de Calendly
@@ -1682,6 +1577,112 @@ confirmBtn.onclick = ()=>{
 };
 // ...existing code...
 
+</script></section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">NetCorp - Votre succès en ligne commence ici</p>
+        <p class="footer-contact">contact@netcorp.com | WhatsApp : +229 0158249458</p>
+        <!-- Dernier CTA dans le footer -->
+        <div class="footer-cta">
+            <a href="#contact" class="cta-button footer-button">
+                <i class="fas fa-calendar-alt"></i> Planifier un appel
+            </a>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation du contenu hero
+            setTimeout(() => {
+                document.querySelector('.hero-content').classList.add('animate');
+            }, 300);
+            
+            // Animation des éléments au défilement
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.section-title, .reason-card, .service-card, .testimonial');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight * 0.8;
+                    
+                    if(elementPosition < screenPosition) {
+                        element.classList.add('animate');
+                    }
+                });
+            }
+            
+            // Initial animation check
+            animateOnScroll();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Gestion du menu hamburger pour mobile
+            document.querySelector('.hamburger').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.querySelector('.nav-list').classList.toggle('active');
+                
+                // Empêcher le défilement du corps lorsque le menu est ouvert
+                if (this.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Fermer le menu mobile lors du clic sur un lien
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.querySelector('.hamburger').classList.remove('active');
+                    document.querySelector('.nav-list').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Animation des cartes de services au survol
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+            
+            // Validation de formulaire
+            const form = document.getElementById('whatsappForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const serviceSelect = document.getElementById('service');
+            
+            nameInput.addEventListener('input', function() {
+                if(this.value.length > 2) {
+                    this.style.borderColor = '#28a745';
+                } else {
+                    this.style.borderColor = '#dc3545';
+                }
+            });
+            
+            emailInput.addEventListener('input', function() {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if(emailPattern.test(this.value)) {
+                    this.style.borderColor = '#28a745';
+                } else {
+                    this.style.borderColor = '#dc3545';
+                }
+            });
+            
+            serviceSelect.addEventListener('change', function() {
+                if(this.value !== "Quel service vous intéresse ?") {
+                    this.style.borderColor = '#28a745';
+                } else {
+                    this.style.borderColor = '#dc3545';
+                }
+            });
             
             // Fonction pour envoyer le formulaire via WhatsApp
             function send(event) {
