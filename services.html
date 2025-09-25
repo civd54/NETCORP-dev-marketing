@@ -16,19 +16,22 @@
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== VARIABLES ===== */
+        /* ===== NOUVELLE PALETTE DE COULEURS DÉVELOPPEUR ===== */
         :root {
-            --primary-dark: #0D1B2A;
-            --primary-accent: #a71e6b;
-            --secondary-accent: #D9006E;
-            --highlight: #FFA600;
-            --white: #FFFFFF;
-            --light-bg: #F4F4F4;
-            --text-dark: #1B033D;
+            --primary-dark: #0a192f; /* Bleu marine très foncé */
+            --primary-accent: #64ffda; /* Cyan vif typique des thèmes de développeurs */
+            --secondary-accent: #112240; /* Bleu foncé */
+            --highlight: #64ffda; /* Cyan pour les éléments importants */
+            --code-highlight: #ffd700; /* Jaune pour les éléments de code */
+            --white: #e6f1ff; /* Blanc bleuté */
+            --light-bg: #0a192f; /* Fond clair mais dans le thème sombre */
+            --text-dark: #8892b0; /* Texte gris bleuté */
+            --text-light: #ccd6f6; /* Texte clair */
             --success: #28a745;
             --hover-elevate: translateY(-6px);
-            --hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            --hover-shadow: 0 12px 25px rgba(100, 255, 218, 0.15);
             --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --card-bg: rgba(17, 34, 64, 0.7); /* Fond des cartes */
         }
 
         /* ===== RESET ===== */
@@ -44,23 +47,50 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
+            color: var(--text-light);
+            background-color: var(--primary-dark);
             position: relative;
             overflow-x: hidden;
         }
 
-        /* ===== NAVIGATION ===== */
+        /* ===== EFFET DE CODE QUI DÉFILE ===== */
+        .code-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(90deg, transparent 79px, var(--primary-accent) 81px, transparent 81px),
+                linear-gradient(var(--card-bg) 1px, transparent 1px);
+            background-size: 100% 1.5em, 100% 1.5em;
+            animation: codeScroll 100s linear infinite;
+        }
+
+        @keyframes codeScroll {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 0 1000px, 0 1000px; }
+        }
+
+        /* ===== NAVIGATION STYLE DÉVELOPPEUR ===== */
         .navbar {
-            background-color: var(--primary-accent);
-            padding: 0.8rem 2rem;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
             position: sticky;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0.8rem 2rem;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .nav-list {
@@ -69,32 +99,45 @@
             align-items: center;
         }
 
-        .navbar .nav-link a.active {
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            font-weight: bold;
-        }
-
         .nav-item {
             margin: 0 0.8rem;
+            position: relative;
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 0.8rem;
+            font-weight: 600;
+            padding: 0.8rem 1.2rem;
             border-radius: 4px;
-            transition: background-color 0.3s, transform 0.3s;
-            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .nav-link::before {
+            content: '>';
+            position: absolute;
+            left: -10px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--primary-accent);
+        }
+
+        .nav-link:hover::before {
+            left: 5px;
+            opacity: 1;
         }
 
         .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--primary-accent);
         }
 
-        /* Logo NetCorp */
+        /* Logo NetCorp style développeur */
         .logo {
             display: flex;
             align-items: center;
@@ -102,83 +145,73 @@
             font-weight: 800;
             font-size: 1.8rem;
             letter-spacing: -1px;
-            margin-right: 1.5rem;
+            position: relative;
         }
         
         .logo-net {
-            color: var(--white);
+            color: var(--text-light);
             position: relative;
-        }
-        
-        .logo-net::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--highlight);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover .logo-net::after {
-            transform: scaleX(1);
-            transform-origin: left;
+            animation: floatNet 4s ease-in-out infinite;
+            font-family: 'Courier New', monospace;
         }
         
         .logo-corp {
-            color: var(--highlight);
+            color: var(--primary-accent);
             position: relative;
+            animation: floatCorp 4s ease-in-out infinite 0.5s;
+            font-family: 'Courier New', monospace;
         }
         
-        .logo-corp::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--white);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
+        .logo:hover .logo-container {
+            transform: scale(1.1);
         }
         
-        .logo:hover .logo-corp::after {
-            transform: scaleX(1);
-            transform-origin: left;
+        @keyframes floatNet {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
         }
-
-        /* Nouveau bouton CTA dans la navigation */
-        .nav-cta {
-            margin-left: 1rem;
+        
+        @keyframes floatCorp {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(-1deg); }
         }
 
         .nav-cta-button {
             display: inline-block;
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            padding: 0.7rem 1.3rem;
-            border-radius: 30px;
+            background: transparent;
+            color: var(--primary-accent);
+            padding: 0.9rem 1.8rem;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
             font-size: 0.9rem;
             transition: var(--transition-smooth);
-            border: 2px solid var(--highlight);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .nav-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-cta-button:hover::before {
+            left: 100%;
         }
 
         .nav-cta-button:hover {
-            background-color: transparent;
-            color: var(--white);
             transform: var(--hover-elevate);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .nav-cta-button i {
-            margin-right: 6px;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.6);
+            background: rgba(100, 255, 218, 0.05);
         }
 
         /* Bouton hamburger */
@@ -193,7 +226,7 @@
             width: 25px;
             height: 3px;
             margin: 5px auto;
-            background-color: var(--white);
+            background-color: var(--text-light);
             transition: all 0.3s ease;
         }
 
@@ -203,7 +236,7 @@
             bottom: 30px;
             right: 30px;
             z-index: 99;
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite, float 3s ease-in-out infinite;
         }
 
         .whatsapp-button {
@@ -233,18 +266,25 @@
         @keyframes pulse {
             0% {
                 transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
             }
-            50% {
-                transform: scale(1.05);
+            70% {
+                box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
             }
             100% {
                 transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
             }
         }
 
-        /* ===== HERO SECTION ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== HERO SECTION STYLE DÉVELOPPEUR ===== */
         .services-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(100, 255, 218, 0.1)), 
                         url('services_back.jpeg') center/cover no-repeat;
             min-height: 70vh;
             display: flex;
@@ -276,40 +316,43 @@
             margin-bottom: 1.5rem;
             line-height: 1.2;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-light), var(--primary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-subtitle {
             font-size: 1.25rem;
             margin-bottom: 2.5rem;
             opacity: 0.9;
+            color: var(--text-dark);
         }
 
-        /* ===== BUTTONS ===== */
+        /* ===== BUTTONS STYLE DÉVELOPPEUR ===== */
         .cta-button {
             display: inline-block;
-            background-color: var(--highlight);
-            color: var(--primary-dark);
+            background: transparent;
+            color: var(--primary-accent);
             padding: 1rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: var(--transition-smooth);
-            border: 2px solid var(--highlight);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
             position: relative;
             overflow: hidden;
+            font-family: 'Courier New', monospace;
         }
 
         .cta-button:hover {
-            background-color: var(--primary-accent);
-            color: var(--white);
+            background: rgba(100, 255, 218, 0.1);
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .cta-button:active {
-            transform: translateY(2px);
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.6);
         }
 
         .cta-button i {
@@ -319,7 +362,7 @@
         /* Bouton CTA spécifique pour le hero */
         .hero-cta {
             padding: 1.2rem 3rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-top: 1rem;
             animation: pulse 2s infinite;
         }
@@ -327,14 +370,14 @@
         .cta-note {
             margin-top: 1.5rem;
             font-size: 0.9rem;
-            color: var(--highlight);
+            color: var(--primary-accent);
             font-style: italic;
         }
 
-        /* ===== SERVICES SECTION ===== */
+        /* ===== SERVICES SECTION STYLE DÉVELOPPEUR ===== */
         .service-detail {
             padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            background-color: var(--secondary-accent);
         }
         
         .service-container {
@@ -356,11 +399,13 @@
         
         .service-detail-title {
             font-size: 2.5rem;
-            color: var(--primary-dark);
+            color: var(--text-light);
             margin-bottom: 1rem;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
         }
         
         .service-detail-title.animate {
@@ -406,6 +451,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: 10px;
+            font-family: 'Courier New', monospace;
         }
         
         .sub-section-title::after {
@@ -419,16 +465,17 @@
         }
         
         .step-card {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: flex-start;
             transition: var(--transition-smooth);
             opacity: 0;
             transform: translateY(20px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
         
         .step-card.animate {
@@ -438,12 +485,13 @@
         
         .step-card:hover {
             transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 255, 218, 0.3);
         }
         
         .step-number {
             background-color: var(--primary-accent);
-            color: var(--white);
+            color: var(--primary-dark);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -455,6 +503,7 @@
             margin-right: 1rem;
             flex-shrink: 0;
             transition: transform 0.3s ease;
+            font-family: 'Courier New', monospace;
         }
         
         .step-card:hover .step-number {
@@ -468,7 +517,7 @@
         .step-title {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: var(--primary-dark);
+            color: var(--text-light);
         }
         
         .step-description {
@@ -481,16 +530,17 @@
         }
         
         .offering-item {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 1.2rem;
             border-radius: 8px;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: var(--transition-smooth);
             opacity: 0;
             transform: translateY(20px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
         
         .offering-item.animate {
@@ -500,7 +550,8 @@
         
         .offering-item:hover {
             transform: translateY(-5px);
-            background-color: rgba(167, 30, 107, 0.05);
+            background-color: rgba(17, 34, 64, 0.9);
+            border-color: rgba(100, 255, 218, 0.3);
         }
         
         .offering-item i {
@@ -523,10 +574,12 @@
         /* Section de comparaison */
         .comparison-section {
             padding: 5rem 2rem;
-            background: var(--primary-accent);
+            background: var(--card-bg);
             color: var(--white);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
         }
         
         .comparison-container {
@@ -544,12 +597,11 @@
         }
         
         .comparison-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(17, 34, 64, 0.7);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 8px;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(100, 255, 218, 0.1);
             transition: var(--transition-smooth);
             opacity: 0;
             transform: translateY(30px);
@@ -562,13 +614,15 @@
         
         .comparison-card:hover {
             transform: scale(1.03);
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(17, 34, 64, 0.9);
+            border-color: rgba(100, 255, 218, 0.3);
         }
         
         .comparison-title {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            color: var(--highlight);
+            color: var(--primary-accent);
+            font-family: 'Courier New', monospace;
         }
         
         .comparison-list {
@@ -579,9 +633,10 @@
         
         .comparison-list li {
             padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
             display: flex;
             align-items: center;
+            color: var(--text-dark);
         }
         
         .comparison-list li:last-child {
@@ -596,7 +651,7 @@
         /* FAQ Section */
         .faq-section {
             padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            background-color: var(--secondary-accent);
         }
         
         .faq-container {
@@ -605,17 +660,19 @@
         }
         
         .faq-item {
-            background: var(--white);
+            background: var(--card-bg);
             margin-bottom: 1rem;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: var(--transition-smooth);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
         
         .faq-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 255, 218, 0.3);
         }
         
         .faq-question {
@@ -626,11 +683,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--primary-dark);
+            color: var(--text-light);
         }
         
         .faq-question i {
             transition: transform 0.3s;
+            color: var(--primary-accent);
         }
         
         .faq-answer {
@@ -651,10 +709,12 @@
         .cta-section {
             padding: 5rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            background: var(--card-bg);
             color: var(--white);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .cta-section::before {
@@ -664,7 +724,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(100,255,218,0.05) 0%, rgba(100,255,218,0) 70%);
             transform: rotate(30deg);
         }
 
@@ -681,33 +741,34 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--text-light);
         }
 
         .cta-subtitle {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
             opacity: 0.9;
+            color: var(--text-dark);
         }
 
         .cta-main {
             padding: 1.3rem 3.5rem;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             background: transparent;
-            color: var(--white);
+            color: var(--primary-accent);
             margin-top: 1.5rem;
-            border: 2px solid var(--white);
+            border: 1px solid var(--primary-accent);
         }
 
         .cta-main:hover {
-            background: var(--white);
-            color: var(--primary-accent);
+            background: rgba(100, 255, 218, 0.1);
         }
 
         .cta-guarantee {
             margin-top: 1rem;
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-accent);
+            font-family: 'Courier New', monospace;
         }
 
         .cta-guarantee i {
@@ -718,7 +779,7 @@
         /* Contact Section */
         .contact-section {
             padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            background-color: var(--secondary-accent);
         }
 
         .contact-subtitle {
@@ -733,6 +794,11 @@
             margin: 0 auto;
             display: grid;
             gap: 1.5rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         .form-input,
@@ -740,18 +806,20 @@
         .form-textarea {
             width: 100%;
             padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 4px;
             font-size: 1rem;
-            background: var(--white);
+            background: rgba(10, 25, 47, 0.5);
+            color: var(--text-light);
             transition: var(--transition-smooth);
+            font-family: 'Courier New', monospace;
         }
 
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
             border-color: var(--primary-accent);
-            box-shadow: 0 0 0 3px rgba(138, 0, 79, 0.1);
+            box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
             outline: none;
             transform: scale(1.02);
         }
@@ -762,27 +830,27 @@
         }
 
         .submit-button {
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            border: none;
+            background: transparent;
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
             padding: 1rem;
             font-size: 1.1rem;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
             transition: var(--transition-smooth);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+            font-family: 'Courier New', monospace;
         }
 
         .submit-button:hover {
-            background-color: var(--secondary-accent);
-            color: var(--white);
+            background: rgba(100, 255, 218, 0.1);
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
         }
 
         /* Bouton téléphone dans la section contact */
@@ -823,17 +891,20 @@
             text-align: center;
             padding: 2rem;
             position: relative;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .footer-text {
             font-size: 1.2rem;
             margin-bottom: 1rem;
             font-weight: bold;
+            color: var(--text-light);
         }
 
         .footer-contact {
             opacity: 0.8;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
         }
 
         .footer-cta {
@@ -841,15 +912,42 @@
         }
 
         .footer-button {
-            background-color: var(--highlight);
-            color: var(--primary-dark);
+            background: transparent;
+            color: var(--primary-accent);
             padding: 0.9rem 2rem;
             font-size: 1.1rem;
+            border: 1px solid var(--primary-accent);
         }
 
         .footer-button:hover {
-            background-color: var(--primary-accent);
-            color: var(--white);
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        /* Titres de section */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary-accent);
+            margin: 1.5rem auto;
+            border-radius: 2px;
+            animation: lineExtend 1.5s ease-out;
+        }
+
+        @keyframes lineExtend {
+            from { width: 0; }
+            to { width: 100px; }
         }
 
         /* ===== RESPONSIVE ===== */
@@ -902,13 +1000,14 @@
                 right: -100%;
                 height: 100vh;
                 width: 70%;
-                background-color: var(--primary-accent);
+                background-color: var(--primary-dark);
                 padding-top: 90px;
                 transition: all 0.5s ease;
                 z-index: 999;
                 flex-direction: column;
                 align-items: flex-start;
                 padding-left: 2rem;
+                border-left: 1px solid rgba(100, 255, 218, 0.2);
             }
             
             .nav-list.active {
@@ -950,6 +1049,10 @@
             .faq-question {
                 font-size: 1.1rem;
             }
+
+            .section-title {
+                font-size: 2rem;
+            }
         }
     </style>
     <script type="text/javascript">
@@ -961,6 +1064,9 @@
     </script>
 </head>
 <body>
+    <!-- Effet de code qui défile en arrière-plan -->
+    <div class="code-background"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <!-- Logo NetCorp -->
@@ -1013,7 +1119,7 @@
     <section class="service-detail">
         <div class="service-container">
             <div class="service-header">
-                <div class="service-icon-large">💻</div>
+                <div class="service-icon-large"><i class="fas fa-code"></i></div>
                 <h2 class="service-detail-title">Développement Web</h2>
                 <p class="service-detail-description">Des sites web performants, esthétiques et optimisés pour convertir vos visiteurs en clients fidèles.</p>
             </div>
@@ -1096,10 +1202,10 @@
     </section>
 
     <!-- Section Marketing Digital -->
-    <section class="service-detail" style="background-color: #f9f9f9;">
+    <section class="service-detail" style="background-color: var(--primary-dark);">
         <div class="service-container">
             <div class="service-header">
-                <div class="service-icon-large">📱</div>
+                <div class="service-icon-large"><i class="fas fa-chart-line"></i></div>
                 <h2 class="service-detail-title">Marketing Digital</h2>
                 <p class="service-detail-description">Stratégies digitales performantes pour augmenter votre visibilité et générer plus de clients.</p>
             </div>
@@ -1185,7 +1291,7 @@
     <section class="service-detail">
         <div class="service-container">
             <div class="service-header">
-                <div class="service-icon-large">🔒</div>
+                <div class="service-icon-large"><i class="fas fa-shield-alt"></i></div>
                 <h2 class="service-detail-title">Cybersécurité</h2>
                 <p class="service-detail-description">Protégez vos données sensibles et sécurisez votre infrastructure numérique contre les menaces.</p>
             </div>
@@ -1270,7 +1376,7 @@
     <!-- Section de comparaison -->
     <section class="comparison-section">
         <div class="comparison-container">
-            <h2 class="section-title section-title-light">Pourquoi choisir NetCorp ?</h2>
+            <h2 class="section-title">Pourquoi choisir NetCorp ?</h2>
             
             <div class="comparison-grid">
                 <div class="comparison-card">

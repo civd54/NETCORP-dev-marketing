@@ -16,19 +16,22 @@
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== VARIABLES ===== */
+        /* ===== NOUVELLE PALETTE DE COULEURS DÉVELOPPEUR ===== */
         :root {
-            --primary-dark: #0D1B2A;
-            --primary-accent: #a71e6b;
-            --secondary-accent: #D9006E;
-            --highlight: #FFA600;
-            --white: #FFFFFF;
-            --light-bg: #F4F4F4;
-            --text-dark: #1B033D;
+            --primary-dark: #0a192f; /* Bleu marine très foncé */
+            --primary-accent: #64ffda; /* Cyan vif typique des thèmes de développeurs */
+            --secondary-accent: #112240; /* Bleu foncé */
+            --highlight: #64ffda; /* Cyan pour les éléments importants */
+            --code-highlight: #ffd700; /* Jaune pour les éléments de code */
+            --white: #e6f1ff; /* Blanc bleuté */
+            --light-bg: #0a192f; /* Fond clair mais dans le thème sombre */
+            --text-dark: #8892b0; /* Texte gris bleuté */
+            --text-light: #ccd6f6; /* Texte clair */
             --medium-gray: #6C757D;
             --hover-elevate: translateY(-5px);
-            --hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --hover-shadow: 0 10px 25px rgba(100, 255, 218, 0.15);
             --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --card-bg: rgba(17, 34, 64, 0.7); /* Fond des cartes */
         }
 
         /* ===== RESET ===== */
@@ -44,23 +47,50 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
+            color: var(--text-light);
+            background-color: var(--primary-dark);
             position: relative;
             overflow-x: hidden;
         }
 
-        /* ===== NAVIGATION ===== */
+        /* ===== EFFET DE CODE QUI DÉFILE ===== */
+        .code-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(90deg, transparent 79px, var(--primary-accent) 81px, transparent 81px),
+                linear-gradient(var(--card-bg) 1px, transparent 1px);
+            background-size: 100% 1.5em, 100% 1.5em;
+            animation: codeScroll 100s linear infinite;
+        }
+
+        @keyframes codeScroll {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 0 1000px, 0 1000px; }
+        }
+
+        /* ===== NAVIGATION STYLE DÉVELOPPEUR ===== */
         .navbar {
-            background-color: var(--primary-accent);
-            padding: 0.8rem 2rem;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
             position: sticky;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0.8rem 2rem;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .nav-list {
@@ -71,24 +101,43 @@
 
         .nav-item {
             margin: 0 0.8rem;
+            position: relative;
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 0.8rem;
+            font-weight: 600;
+            padding: 0.8rem 1.2rem;
             border-radius: 4px;
-            transition: background-color 0.3s, transform 0.3s;
-            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .nav-link::before {
+            content: '>';
+            position: absolute;
+            left: -10px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--primary-accent);
+        }
+
+        .nav-link:hover::before {
+            left: 5px;
+            opacity: 1;
         }
 
         .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: var(--hover-elevate);
+            transform: translateY(-3px);
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--primary-accent);
         }
 
-        /* Logo NetCorp */
+        /* Logo NetCorp style développeur */
         .logo {
             display: flex;
             align-items: center;
@@ -96,83 +145,73 @@
             font-weight: 800;
             font-size: 1.8rem;
             letter-spacing: -1px;
-            margin-right: 1.5rem;
+            position: relative;
         }
         
         .logo-net {
-            color: var(--white);
+            color: var(--text-light);
             position: relative;
-        }
-        
-        .logo-net::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--highlight);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover .logo-net::after {
-            transform: scaleX(1);
-            transform-origin: left;
+            animation: floatNet 4s ease-in-out infinite;
+            font-family: 'Courier New', monospace;
         }
         
         .logo-corp {
-            color: var(--highlight);
+            color: var(--primary-accent);
             position: relative;
+            animation: floatCorp 4s ease-in-out infinite 0.5s;
+            font-family: 'Courier New', monospace;
         }
         
-        .logo-corp::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--white);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
+        .logo:hover .logo-container {
+            transform: scale(1.1);
         }
         
-        .logo:hover .logo-corp::after {
-            transform: scaleX(1);
-            transform-origin: left;
+        @keyframes floatNet {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
         }
-
-        /* Bouton CTA dans la navigation */
-        .nav-cta {
-            margin-left: 1rem;
+        
+        @keyframes floatCorp {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(-1deg); }
         }
 
         .nav-cta-button {
             display: inline-block;
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            padding: 0.7rem 1.3rem;
-            border-radius: 30px;
+            background: transparent;
+            color: var(--primary-accent);
+            padding: 0.9rem 1.8rem;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
             font-size: 0.9rem;
             transition: var(--transition-smooth);
-            border: 2px solid var(--highlight);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .nav-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-cta-button:hover::before {
+            left: 100%;
         }
 
         .nav-cta-button:hover {
-            background-color: transparent;
-            color: var(--white);
             transform: var(--hover-elevate);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .nav-cta-button i {
-            margin-right: 6px;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.6);
+            background: rgba(100, 255, 218, 0.05);
         }
 
         /* Bouton hamburger */
@@ -187,7 +226,7 @@
             width: 25px;
             height: 3px;
             margin: 5px auto;
-            background-color: var(--white);
+            background-color: var(--text-light);
             transition: all 0.3s ease;
         }
 
@@ -197,7 +236,7 @@
             bottom: 30px;
             right: 30px;
             z-index: 99;
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite, float 3s ease-in-out infinite;
         }
 
         .whatsapp-button {
@@ -227,18 +266,25 @@
         @keyframes pulse {
             0% {
                 transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
             }
-            50% {
-                transform: scale(1.05);
+            70% {
+                box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
             }
             100% {
                 transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
             }
         }
 
-        /* ===== HERO SECTION ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== HERO SECTION STYLE DÉVELOPPEUR ===== */
         .about-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(100, 255, 218, 0.1)), 
                         url('a propos_back.jpeg') center/cover no-repeat;
             min-height: 70vh;
             display: flex;
@@ -270,43 +316,43 @@
             margin-bottom: 1.5rem;
             line-height: 1.2;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-light), var(--primary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .about-hero-subtitle {
             font-size: 1.25rem;
             margin-bottom: 2.5rem;
             opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            color: var(--text-dark);
         }
 
-        /* ===== BUTTONS ===== */
+        /* ===== BUTTONS STYLE DÉVELOPPEUR ===== */
         .cta-button {
             display: inline-block;
-            background-color: var(--highlight);
-            color: var(--primary-dark);
+            background: transparent;
+            color: var(--primary-accent);
             padding: 1rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: var(--transition-smooth);
-            border: 2px solid var(--highlight);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
             position: relative;
             overflow: hidden;
+            font-family: 'Courier New', monospace;
         }
 
         .cta-button:hover {
-            background-color: var(--primary-accent);
-            color: var(--white);
-            transform: var(--hover-elevate);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .cta-button:active {
-            transform: translateY(2px);
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.6);
         }
 
         .cta-button i {
@@ -315,15 +361,17 @@
 
         /* ===== SECTIONS COMMON STYLES ===== */
         .section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             text-align: center;
             margin-bottom: 3rem;
-            color: var(--text-dark);
+            color: var(--text-light);
             position: relative;
             padding-bottom: 1rem;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
         }
 
         .section-title.animate {
@@ -337,16 +385,22 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--highlight);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-accent);
             border-radius: 2px;
+            animation: lineExtend 1.5s ease-out;
+        }
+
+        @keyframes lineExtend {
+            from { width: 0; }
+            to { width: 100px; }
         }
 
         /* ===== STORY SECTION ===== */
         .story-section {
             padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            background-color: var(--secondary-accent);
         }
 
         .story-container {
@@ -366,16 +420,18 @@
         .story-image {
             flex: 1;
             min-width: 300px;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transform: perspective(1000px) rotateY(15deg);
             transition: var(--transition-smooth);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         .story-image:hover {
             transform: perspective(1000px) rotateY(0deg) scale(1.03);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 255, 218, 0.3);
         }
 
         .story-image img {
@@ -392,6 +448,7 @@
             opacity: 0;
             transform: translateX(-20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
+            color: var(--text-dark);
         }
 
         .story-text.animate {
@@ -402,7 +459,7 @@
         /* ===== TEAM SECTION ===== */
         .team-section {
             padding: 5rem 2rem;
-            background-color: var(--white);
+            background-color: var(--primary-dark);
         }
 
         .team-grid {
@@ -418,6 +475,11 @@
             transition: var(--transition-smooth);
             opacity: 0;
             transform: translateY(30px);
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
 
         .team-member.animate {
@@ -426,16 +488,17 @@
         }
 
         .member-image {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             overflow: hidden;
             margin: 0 auto 1.5rem;
-            border: 5px solid var(--light-bg);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--primary-accent);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             align-items: center;
             justify-content: center;
+            background: var(--secondary-accent);
         }
 
         .member-image img {
@@ -447,6 +510,8 @@
 
         .team-member:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 255, 218, 0.3);
         }
 
         .team-member:hover .member-image img {
@@ -455,13 +520,14 @@
 
         .team-member:hover .member-image {
             border-color: var(--highlight);
-            box-shadow: 0 8px 25px rgba(139, 0, 79, 0.2);
+            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
         }
 
         .member-name {
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
-            color: var(--primary-dark);
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
         }
 
         .member-role {
@@ -472,7 +538,7 @@
         }
 
         .member-bio {
-            color: var(--medium-gray);
+            color: var(--text-dark);
             font-size: 0.95rem;
             line-height: 1.7;
         }
@@ -480,7 +546,7 @@
         /* ===== VALUES SECTION ===== */
         .values-section {
             padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            background-color: var(--secondary-accent);
         }
 
         .values-container {
@@ -495,14 +561,15 @@
         }
 
         .value-card {
-            background: var(--white);
+            background: var(--card-bg);
             padding: 2.5rem 2rem;
-            border-radius: 10px;
+            border-radius: 8px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             transition: var(--transition-smooth);
             opacity: 0;
             transform: translateY(30px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         .value-card.animate {
@@ -512,7 +579,8 @@
 
         .value-card:hover {
             transform: var(--hover-elevate);
-            box-shadow: var(--hover-shadow);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 255, 218, 0.3);
         }
 
         .value-icon {
@@ -529,11 +597,12 @@
         .value-title {
             font-size: 1.4rem;
             margin-bottom: 1rem;
-            color: var(--primary-dark);
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
         }
 
         .value-description {
-            color: var(--medium-gray);
+            color: var(--text-dark);
             line-height: 1.7;
         }
 
@@ -541,10 +610,12 @@
         .cta-section {
             padding: 5rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            background: var(--card-bg);
             color: var(--white);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .cta-section::before {
@@ -554,7 +625,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(100,255,218,0.05) 0%, rgba(100,255,218,0) 70%);
             transform: rotate(30deg);
         }
 
@@ -571,27 +642,27 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--text-light);
         }
 
         .cta-subtitle {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
             opacity: 0.9;
+            color: var(--text-dark);
         }
 
         .cta-main {
             padding: 1.3rem 3.5rem;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             background: transparent;
-            color: var(--white);
+            color: var(--primary-accent);
             margin-top: 1.5rem;
-            border: 2px solid var(--white);
+            border: 1px solid var(--primary-accent);
         }
 
         .cta-main:hover {
-            background: var(--white);
-            color: var(--primary-accent);
+            background: rgba(100, 255, 218, 0.1);
         }
 
         /* ===== FOOTER ===== */
@@ -600,17 +671,20 @@
             color: var(--white);
             text-align: center;
             padding: 2rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .footer-text {
             font-size: 1.2rem;
             margin-bottom: 1rem;
             font-weight: bold;
+            color: var(--text-light);
         }
 
         .footer-contact {
             opacity: 0.8;
             margin-bottom: 0.5rem;
+            color: var(--text-dark);
         }
 
         .footer-cta {
@@ -618,15 +692,15 @@
         }
 
         .footer-button {
-            background-color: var(--highlight);
-            color: var(--primary-dark);
+            background: transparent;
+            color: var(--primary-accent);
             padding: 0.9rem 2rem;
             font-size: 1.1rem;
+            border: 1px solid var(--primary-accent);
         }
 
         .footer-button:hover {
-            background-color: var(--primary-accent);
-            color: var(--white);
+            background: rgba(100, 255, 218, 0.1);
         }
 
         /* ===== RESPONSIVE ===== */
@@ -679,13 +753,14 @@
                 right: -100%;
                 height: 100vh;
                 width: 70%;
-                background-color: var(--primary-accent);
+                background-color: var(--primary-dark);
                 padding-top: 90px;
                 transition: all 0.5s ease;
                 z-index: 999;
                 flex-direction: column;
                 align-items: flex-start;
                 padding-left: 2rem;
+                border-left: 1px solid rgba(100, 255, 218, 0.2);
             }
             
             .nav-list.active {
@@ -721,11 +796,15 @@
             }
             
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
 
             .story-container {
                 flex-direction: column;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -738,6 +817,9 @@
 </script>
 </head>
 <body>
+    <!-- Effet de code qui défile en arrière-plan -->
+    <div class="code-background"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <!-- Logo NetCorp -->
@@ -749,7 +831,7 @@
         <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="#" class="nav-link active">À Propos</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">À Propos</a></li>
             <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
             <!-- Bouton CTA dans la navigation -->
@@ -895,37 +977,37 @@
         <div class="values-container">
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon">💡</div>
+                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
                     <h3 class="value-title">Innovation Continue</h3>
                     <p class="value-description">Nous explorons constamment les nouvelles technologies pour offrir des solutions à la pointe du progrès tout en restant accessibles.</p>
                 </div>
                 
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
+                    <div class="value-icon"><i class="fas fa-hands-helping"></i></div>
                     <h3 class="value-title">Partage des Connaissances</h3>
                     <p class="value-description">Nous croyons en la force du collectif et partageons notre expertise pour faire grandir ensemble l'écosystème numérique africain.</p>
                 </div>
                 
                 <div class="value-card">
-                    <div class="value-icon">🎯</div>
+                    <div class="value-icon"><i class="fas fa-bullseye"></i></div>
                     <h3 class="value-title">Orientation Résultats</h3>
                     <p class="value-description">Chaque ligne de code, chaque design et chaque stratégie est pensée pour générer des résultats tangibles pour votre entreprise.</p>
                 </div>
                 
                 <div class="value-card">
-                    <div class="value-icon">🌍</div>
+                    <div class="value-icon"><i class="fas fa-globe-africa"></i></div>
                     <h3 class="value-title">Enracinement Local</h3>
                     <p class="value-description">Nous comprenons les défis spécifiques des entreprises africaines et créons des solutions adaptées à notre contexte.</p>
                 </div>
                 
                 <div class="value-card">
-                    <div class="value-icon">🔐</div>
+                    <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3 class="value-title">Intégrité</h3>
                     <p class="value-description">Transparence, éthique et confidentialité sont au cœur de chacune de nos interactions et solutions.</p>
                 </div>
                 
                 <div class="value-card">
-                    <div class="value-icon">🚀</div>
+                    <div class="value-icon"><i class="fas fa-rocket"></i></div>
                     <h3 class="value-title">Ambition Collective</h3>
                     <p class="value-description">Nous ne visons pas seulement votre succès, mais la transformation numérique de toute une région.</p>
                 </div>

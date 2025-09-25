@@ -37,22 +37,27 @@
         })(window, document, "clarity", "script", "s47y6eznrm");
     </script>
     <style>
-        /* ===== VARIABLES ===== */
+        /* ===== NOUVELLE PALETTE DE COULEURS DÉVELOPPEUR ===== */
         :root {
-            --primary-dark: #0D1B2A;
-            --primary-accent: #a71e6b;
-            --secondary-accent: #D9006E;
-            --highlight: #FFA600;
-            --white: #FFFFFF;
-            --light-bg: #F4F4F4;
-            --text-dark: #1B033D;
+            --primary-dark: #0a192f; /* Bleu marine très foncé */
+            --primary-accent: #64ffda; /* Cyan vif typique des thèmes de développeurs */
+            --secondary-accent: #112240; /* Bleu foncé */
+            --highlight: #64ffda; /* Cyan pour les éléments importants */
+            --code-highlight: #ffd700; /* Jaune pour les éléments de code */
+            --white: #e6f1ff; /* Blanc bleuté */
+            --light-bg: #0a192f; /* Fond clair mais dans le thème sombre */
+            --text-dark: #8892b0; /* Texte gris bleuté */
+            --text-light: #ccd6f6; /* Texte clair */
             --success: #28a745;
-            --hover-elevate: translateY(-6px);
-            --hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --hover-elevate: translateY(-8px);
+            --hover-shadow: 0 20px 40px rgba(100, 255, 218, 0.15);
+            --transition-smooth: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --gradient-primary: linear-gradient(135deg, var(--primary-accent), #52d1b9);
+            --gradient-hero: linear-gradient(135deg, rgba(10, 25, 47, 0.95), rgba(100, 255, 218, 0.1));
+            --card-bg: rgba(17, 34, 64, 0.7); /* Fond des cartes */
         }
 
-        /* ===== RESET ===== */
+        /* ===== RESET AMÉLIORÉ ===== */
         * {
             margin: 0;
             padding: 0;
@@ -64,25 +69,97 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
+            line-height: 1.7;
+            color: var(--text-light);
+            background-color: var(--primary-dark);
             position: relative;
             overflow-x: hidden;
         }
 
-        /* ===== NAVIGATION ===== */
-        .navbar {
-            background-color: var(--primary-accent);
-            padding: 1rem 0;
-            position: sticky;
+        /* ===== EFFET DE CODE QUI DÉFILE ===== */
+        .code-background {
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.05;
+            background-image: 
+                linear-gradient(90deg, transparent 79px, var(--primary-accent) 81px, transparent 81px),
+                linear-gradient(var(--card-bg) 1px, transparent 1px);
+            background-size: 100% 1.5em, 100% 1.5em;
+            animation: codeScroll 100s linear infinite;
+        }
+
+        @keyframes codeScroll {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 0 1000px, 0 1000px; }
+        }
+
+        /* ===== EFFET DE PARTICULES ===== */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-accent);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatParticle 20s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            25% {
+                opacity: 0.15;
+            }
+            50% {
+                transform: translateY(-100px) translateX(100px) rotate(180deg);
+                opacity: 0.2;
+            }
+            75% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+
+        /* ===== NAVIGATION STYLE DÉVELOPPEUR ===== */
+        .navbar {
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0.8rem 2rem;
+            transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 25, 47, 0.98);
+            padding: 0.6rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .nav-list {
@@ -95,61 +172,83 @@
             align-items: center;
         }
 
-        .navbar .nav-link a.active {
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            font-weight: bold;
-        }
-
         .nav-item {
-            margin: 0 0.5rem;
+            margin: 0 0.8rem;
+            position: relative;
         }
 
         .nav-link {
-            color: var(--white);
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
+            font-weight: 600;
+            padding: 0.8rem 1.2rem;
             border-radius: 4px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .nav-link::before {
+            content: '>';
+            position: absolute;
+            left: -10px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--primary-accent);
+        }
+
+        .nav-link:hover::before {
+            left: 5px;
+            opacity: 1;
         }
 
         .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
-        }
-
-        /* Nouveau bouton CTA dans la navigation */
-        .nav-cta {
-            margin-left: auto;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--primary-accent);
         }
 
         .nav-cta-button {
             display: inline-block;
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
+            background: transparent;
+            color: var(--primary-accent);
+            padding: 0.9rem 1.8rem;
+            border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: var(--transition-smooth);
-            border: 2px solid var(--highlight);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .nav-cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-cta-button:hover::before {
+            left: 100%;
         }
 
         .nav-cta-button:hover {
-            background-color: transparent;
-            color: var(--white);
             transform: var(--hover-elevate);
-            box-shadow: var(--hover-shadow);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.6);
+            background: rgba(100, 255, 218, 0.05);
         }
 
-        .nav-cta-button i {
-            margin-right: 8px;
-        }
-
-        /* Logo NetCorp */
+        /* Logo NetCorp style développeur */
         .logo {
             display: flex;
             align-items: center;
@@ -163,356 +262,194 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: transform 0.5s ease;
         }
         
         .logo-net {
-            color: var(--white);
+            color: var(--text-light);
             position: relative;
-            animation: floatNet 3s ease-in-out infinite;
+            animation: floatNet 4s ease-in-out infinite;
+            font-family: 'Courier New', monospace;
         }
         
         .logo-corp {
-            color: var(--highlight);
+            color: var(--primary-accent);
             position: relative;
-            animation: floatCorp 3s ease-in-out infinite 0.5s;
-        }
-        
-        .logo:hover .logo-net {
-            animation: pulseNet 0.5s ease;
-        }
-        
-        .logo:hover .logo-corp {
-            animation: pulseCorp 0.5s ease 0.1s;
+            animation: floatCorp 4s ease-in-out infinite 0.5s;
+            font-family: 'Courier New', monospace;
         }
         
         .logo:hover .logo-container {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
         .logo-icon {
-            font-size: 1.8rem;
-            color: var(--highlight);
-            
+            height: 45px;
+            transition: transform 0.5s ease;
+            filter: brightness(0) invert(1);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(360deg);
         }
         
         @keyframes floatNet {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
         }
         
         @keyframes floatCorp {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-7px); }
-        }
-        
-        @keyframes pulseNet {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes pulseCorp {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes rotateIcon {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(-1deg); }
         }
 
-        /* Bouton WhatsApp flottant */
-        .whatsapp-cta {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 99;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-button {
-            display: flex;
-            align-items: center;
-            background-color: #25D366;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
-            transition: var(--transition-smooth);
-        }
-
-        .whatsapp-button:hover {
-            background-color: #128C7E;
-            transform: var(--hover-elevate);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.7);
-        }
-
-        .whatsapp-button i {
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION STYLE DÉVELOPPEUR ===== */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: var(--gradient-hero), 
                         url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
+            color: var(--text-light);
             text-align: center;
             padding: 2rem;
-            position: relative;
-            background-attachment: fixed; /* Effet parallaxe subtil */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .hero-content.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-
-        /* ===== BUTTONS ===== */
-        .cta-button {
-            display: inline-block;
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            transition: var(--transition-smooth);
-            border: 2px solid var(--highlight);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        .cta-button:hover {
-            background-color: var(--primary-accent);
-            color: var(--white);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(100, 255, 218, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(17, 34, 64, 0.3) 0%, transparent 50%);
+            animation: pulseGlow 8s ease-in-out infinite;
         }
 
-        .cta-button:active {
-            transform: translateY(2px);
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
         }
 
-        .cta-button i {
-            margin-right: 10px;
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: heroAppear 1.2s ease-out 0.5s forwards;
         }
 
-        /* Bouton CTA spécifique pour le hero */
-        .hero-cta {
+        @keyframes heroAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, var(--text-light), var(--primary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShine 3s ease-in-out infinite;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+        }
+
+        @keyframes titleShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+            color: var(--text-dark);
+        }
+
+        /* ===== BOUTONS STYLE DÉVELOPPEUR ===== */
+        .cta-button {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-accent);
             padding: 1.2rem 3rem;
-            font-size: 1.3rem;
-            margin-top: 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(100, 255, 218, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+
+        .cta-button:hover {
+            transform: var(--hover-elevate);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.6);
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-cta {
+            padding: 1.4rem 4rem;
+            font-size: 1.2rem;
+            margin-top: 2rem;
             animation: pulse 2s infinite;
         }
 
-        .cta-note {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--highlight);
-            font-style: italic;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(100, 255, 218, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
         }
 
-        /* Bouton dans les cartes */
-        .card-cta {
-            display: inline-block;
-            background-color: var(--primary-accent);
-            color: var(--white);
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-top: 1.5rem;
-            transition: var(--transition-smooth);
-            border: 2px solid var(--primary-accent);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .card-cta:hover {
-            background-color: transparent;
-            color: var(--primary-accent);
-            transform: translateY(-3px);
-        }
-
-        .card-cta i {
-            margin-right: 5px;
-        }
-
-        /* Bouton dans les services */
-        .service-cta {
-            display: inline-block;
-            background-color: var(--white);
-            color: var(--primary-accent);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1.5rem;
-            transition: var(--transition-smooth);
-            border: 2px solid var(--white);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .service-cta:hover {
-            background-color: var(--primary-accent);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .service-cta i {
-            margin-right: 8px;
-        }
-
-        /* Bouton après témoignages */
-        .testimonial-cta-container {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .testimonial-cta {
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--white);
-        }
-
-        .testimonial-cta:hover {
-            background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent));
-        }
-
-        /* Bouton principal dans la section CTA */
-        .cta-main {
-            padding: 1.3rem 3.5rem;
-            font-size: 1.4rem;
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--white);
-            margin-top: 1.5rem;
-            border: none;
-        }
-
-        .cta-main:hover {
-            background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent));
-        }
-
-        .cta-guarantee {
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .cta-guarantee i {
-            margin-right: 8px;
-            color: var(--highlight);
-        }
-
-        /* Bouton dans le footer */
-        .footer-cta {
-            margin-top: 1.5rem;
-        }
-
-        .footer-button {
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            padding: 0.9rem 2rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-button:hover {
-            background-color: var(--primary-accent);
-            color: var(--white);
-        }
-
-        /* Bouton téléphone dans la section contact */
-        .contact-alt-cta {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .phone-cta {
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--success);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: var(--transition-smooth);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .phone-cta:hover {
-            background-color: #218838;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .phone-cta i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* ===== SECTIONS COMMON STYLES ===== */
+        /* ===== SECTIONS AMÉLIORÉES ===== */
         .section-title {
-            font-size: 2rem;
+            font-size: 3rem;
             text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text-dark);
+            margin-bottom: 4rem;
+            color: var(--text-light);
             position: relative;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
         }
 
         .section-title.animate {
@@ -523,47 +460,65 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary-accent);
-            margin: 1rem auto;
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-primary);
+            margin: 1.5rem auto;
             border-radius: 2px;
+            animation: lineExtend 1.5s ease-out;
         }
 
-        .section-title-light {
-            color: var(--white);
+        @keyframes lineExtend {
+            from { width: 0; }
+            to { width: 100px; }
         }
 
-        .section-title-light::after {
-            background-color: var(--highlight);
-        }
-
-        /* ===== WHY SECTION ===== */
+        /* ===== WHY SECTION AMÉLIORÉE ===== */
         .why-section {
-            padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            padding: 8rem 2rem;
+            background: var(--secondary-accent);
+            position: relative;
         }
 
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .reason-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
             transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
             height: 100%;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(50px);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .reason-card:hover::before {
+            transform: scaleX(1);
         }
 
         .reason-card.animate {
@@ -572,54 +527,89 @@
         }
 
         .reason-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 255, 218, 0.3);
         }
 
         .reason-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
             color: var(--primary-accent);
+            margin-bottom: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
         }
 
         .reason-text {
             color: var(--text-dark);
+            margin-bottom: 2rem;
             flex-grow: 1;
         }
 
-        /* ===== SERVICES SECTION ===== */
+        .card-cta {
+            display: inline-block;
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .card-cta:hover {
+            border-color: var(--primary-accent);
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        /* ===== SERVICES SECTION AMÉLIORÉE ===== */
         .services-section {
-            padding: 5rem 2rem;
-            background-color: rgb(227, 212, 212);
+            padding: 8rem 2rem;
+            background: var(--primary-dark);
             color: var(--white);
-            background-image: url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop') center/cover;
+            opacity: 0.05;
+            animation: backgroundMove 30s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(1deg); }
+            100% { transform: scale(1) rotate(0deg); }
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 10px;
+            background: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 8px;
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(100, 255, 218, 0.1);
             transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
             height: 100%;
-            background-color: rgba(167, 30, 107, 0.8);
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(50px);
         }
 
         .service-card.animate {
@@ -628,50 +618,79 @@
         }
 
         .service-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.03);
-            color: var(--text-dark);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(17, 34, 64, 0.9);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(100, 255, 218, 0.3);
         }
 
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 4rem;
+            margin-bottom: 2rem;
             transition: transform 0.5s ease;
+            display: inline-block;
+            color: var(--primary-accent);
         }
 
         .service-card:hover .service-icon {
-            transform: scale(1.2) rotate(5deg);
+            transform: scale(1.3);
+            animation: iconBounce 0.6s ease;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1.3); }
+            50% { transform: scale(1.4); }
         }
 
         .service-title {
+            color: var(--primary-accent);
+            margin-bottom: 1.5rem;
+            font-family: 'Courier New', monospace;
             font-size: 1.5rem;
-            margin-bottom: 1rem;
         }
 
         .service-description {
-            opacity: 0.9;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
             flex-grow: 1;
         }
 
-        /* ===== TESTIMONIALS SECTION ===== */
+        .service-cta {
+            display: inline-block;
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .service-cta:hover {
+            border-color: var(--primary-accent);
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        /* ===== TESTIMONIALS SECTION AMÉLIORÉE ===== */
         .testimonials-section {
-            padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            padding: 8rem 2rem;
+            background: var(--secondary-accent);
             text-align: center;
+            position: relative;
         }
 
         .testimonial {
             max-width: 800px;
-            margin: 0 auto 3rem;
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 0 auto 4rem;
+            padding: 3rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             position: relative;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
         .testimonial.animate {
@@ -682,228 +701,280 @@
         .testimonial::before {
             content: '"';
             position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 5rem;
+            top: -30px;
+            left: 30px;
+            font-size: 8rem;
             color: var(--primary-accent);
-            opacity: 0.2;
+            opacity: 0.1;
             font-family: Georgia, serif;
+            line-height: 1;
         }
 
         .testimonial-text {
-            font-size: 1.25rem;
             font-style: italic;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
 
         .testimonial-author {
-            font-weight: bold;
             color: var(--primary-accent);
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
         }
 
-        /* ===== CTA SECTION ===== */
+        .testimonial-cta-container {
+            margin-top: 3rem;
+        }
+
+        /* ===== CTA SECTION AMÉLIORÉE ===== */
         .cta-section {
-            padding: 5rem 2rem;
+            padding: 8rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            background: var(--card-bg);
             color: var(--white);
             position: relative;
             overflow: hidden;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .cta-section::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(100,255,218,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+            animation: ctaFloat 20s linear infinite;
         }
 
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
+        @keyframes ctaFloat {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-100px) translateX(-100px); }
         }
 
         .cta-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            color: var(--text-light);
         }
 
         .cta-subtitle {
             font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            color: var(--text-dark);
         }
 
-        /* ===== CONTACT SECTION ===== */
+        .cta-main {
+            margin-bottom: 2rem;
+        }
+
+        .cta-guarantee {
+            color: var(--primary-accent);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ===== CONTACT SECTION AMÉLIORÉE ===== */
         .contact-section {
-            padding: 5rem 2rem;
-            background-color: var(--light-bg);
+            padding: 8rem 2rem;
+            background: var(--primary-dark);
         }
 
         .contact-subtitle {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
             font-size: 1.2rem;
-            color: var(--primary-accent);
         }
 
         .contact-form {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             display: grid;
-            gap: 1.5rem;
+            gap: 2rem;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
+        .form-input, .form-select, .form-textarea {
             width: 100%;
             padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            background: var(--white);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 4px;
+            background: rgba(10, 25, 47, 0.5);
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
             transition: var(--transition-smooth);
         }
 
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 0 3px rgba(138, 0, 79, 0.1);
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            transform: scale(1.02);
-        }
-
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
         }
 
         .submit-button {
-            background-color: var(--highlight);
-            color: var(--primary-dark);
-            border: none;
-            padding: 1rem;
-            font-size: 1.1rem;
+            background: transparent;
+            color: var(--primary-accent);
+            padding: 1.2rem;
+            border: 1px solid var(--primary-accent);
+            border-radius: 4px;
             font-weight: bold;
-            border-radius: 8px;
             cursor: pointer;
             transition: var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
         }
 
         .submit-button:hover {
-            background-color: var(--secondary-accent);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
         }
 
-        /* ===== FOOTER ===== */
+        .contact-alt-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .phone-cta {
+            display: inline-block;
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            border: 1px solid var(--primary-accent);
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .phone-cta:hover {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+        }
+
+        /* ===== FOOTER AMÉLIORÉ ===== */
         .footer {
-            background-color: var(--primary-dark);
+            background: var(--secondary-accent);
             color: var(--white);
             text-align: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
             position: relative;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .footer-text {
             font-size: 1.2rem;
             margin-bottom: 1rem;
-            font-weight: bold;
+            color: var(--text-light);
         }
 
         .footer-contact {
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
         }
 
-        /* ===== RESPONSIVE ===== */
+        .footer-button {
+            margin-top: 1rem;
+        }
+
+        /* ===== BOUTON WHATSAPP AMÉLIORÉ ===== */
+        .whatsapp-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            animation: pulse 2s infinite, float 3s ease-in-out infinite;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            transition: var(--transition-smooth);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== RESPONSIVE AMÉLIORÉ ===== */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 0.8rem 1.5rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .logo {
-                font-size: 1.6rem;
-                padding-left: 0.5rem;
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid,
+            .reasons-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .reason-card,
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .navbar {
+                padding: 0.8rem 1rem;
             }
             
             .nav-list {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-dark);
                 flex-direction: column;
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 70%;
-                background-color: var(--primary-accent);
-                padding-top: 70px;
-                transition: all 0.5s ease;
-                z-index: 999;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             }
             
             .nav-list.active {
-                right: 0;
+                display: flex;
             }
             
             .nav-item {
-                margin: 1rem 0;
-                width: 100%;
-                text-align: center;
-            }
-            
-            .nav-cta {
-                margin-left: 0;
-                margin-top: 1rem;
-                width: 100%;
-                padding: 0 1rem;
-            }
-            
-            .nav-cta-button {
-                display: block;
-                width: 100%;
-                text-align: center;
-                margin-top: 1rem;
+                margin: 0.5rem 0;
             }
             
             .hamburger {
-                display: block;
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-                z-index: 1000;
+                display: flex;
+                flex-direction: column;
                 cursor: pointer;
             }
             
-            .hamburger .bar {
-                display: block;
+            .bar {
                 width: 25px;
                 height: 3px;
-                margin: 5px auto;
-                background-color: var(--white);
-                transition: all 0.3s ease;
+                background: var(--text-light);
+                margin: 3px 0;
+                transition: var(--transition-smooth);
             }
             
             .hamburger.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
+                transform: rotate(-45deg) translate(-5px, 6px);
             }
             
             .hamburger.active .bar:nth-child(2) {
@@ -911,51 +982,48 @@
             }
             
             .hamburger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
+                transform: rotate(45deg) translate(-5px, -6px);
             }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .cta-button {
-                padding: 0.9rem 1.8rem;
-                font-size: 1.1rem;
-            }
-            
-            .hero-cta {
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
-            }
-            
-            .cta-main {
-                padding: 1.1rem 2.5rem;
-                font-size: 1.2rem;
-            }
-            
-            .whatsapp-button {
-                padding: 12px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .whatsapp-button i {
-                font-size: 1.2rem;
-            }
+        }
+
+        /* ===== ANIMATION DE TEXTE TAPÉ ===== */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--primary-accent);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-accent) }
+        }
+
+        /* Style pour le bouton hamburger (caché sur desktop) */
+        .hamburger {
+            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- Effet de code qui défile en arrière-plan -->
+    <div class="code-background"></div>
+    
+    <!-- Effet de particules -->
+    <div class="particles-container" id="particles"></div>
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <!-- Logo NetCorp animé -->
-         <a href="#" class="logo">
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
             <div class="logo-container">
-                <img src="./logo_net2.0.png" width="100%" alt="Logo"  class="logo-icon">
-                
+                <img src="./logo_net2.0.png" alt="Logo NetCorp" class="logo-icon">
+                <span class="logo-net">Net</span><span class="logo-corp">Corp</span>
             </div>
         </a>
         
@@ -969,12 +1037,6 @@
             <li class="nav-item nav-cta">
                 <a href="#contact" class="nav-cta-button">
                     <i class="fas fa-calendar-check"></i> Audit Gratuit
-                </a>
-            </li>
-            <li class="nav-item nav-cta">
-                <a href="#rdvModule" class="nav-cta-button">
-                    <i class="fas fa-calendar-alt"></i>
-                    Rendez-vous
                 </a>
             </li>
         </ul>
@@ -999,7 +1061,7 @@
             <h1 class="hero-title">Transformez votre présence en ligne en machine à attirer des clients</h1>
             <p class="hero-subtitle">Découvrez les solutions digitales qui vous aideront à dominer votre marché : Sites web et Applications mobiles percutants, marketing digital explosif et cybersécurité maximale</p>
             <a href="#contact" class="cta-button hero-cta">
-                <i class="fas fa-gift"></i> Commencez votre transformation digitale
+                <span><i class="fas fa-gift"></i> Commencez votre transformation digitale</span>
             </a>
             <p class="cta-note">Offre limitée aux 10 premiers clients ce mois-ci</p>
         </div>
@@ -1011,21 +1073,21 @@
         <div class="reasons-grid">
             <div class="reason-card">
                 <h3 class="reason-title">Accompagnement sur-mesure</h3>
-                <p class="reason-text">Votre business, notre priorité. Des solutions personnalisées pour des résultats exceptionnels. Nous ne vous proposons pas que des soutions, nous vous proposons des résultats.</p>
+                <p class="reason-text">Votre business, notre priorité. Des solutions personnalisées pour des résultats exceptionnels. Nous ne vous proposons pas que des solutions, nous vous proposons des résultats.</p>
                 <a href="https://wa.me/2290158249458" class="card-cta">
                     <i class="fas fa-comments"></i> Discuter de mon projet
                 </a>
             </div>
             <div class="reason-card">
                 <h3 class="reason-title">Expertise locale & internationale</h3>
-                <p class="reason-text">L'expertise qui fais la différence. Des professionnels qui connaissent leur domaine, des résultats qui parlent d'eux-mèmes.</p>
+                <p class="reason-text">L'expertise qui fait la différence. Des professionnels qui connaissent leur domaine, des résultats qui parlent d'eux-mêmes.</p>
                 <a href="https://wa.me/2290158249458" class="card-cta">
                     <i class="fas fa-comments"></i> Discuter de mon projet
                 </a>
             </div>
             <div class="reason-card">
                 <h3 class="reason-title">Résultats mesurables</h3>
-                <p class="reason-text">Plus de clients. Moins de stress, des chiffres qui parlent et qui prouvent notre éfficacité. Nous ne promettons pas, nous réalisons.</p>
+                <p class="reason-text">Plus de clients. Moins de stress, des chiffres qui parlent et qui prouvent notre efficacité. Nous ne promettons pas, nous réalisons.</p>
                 <a href="https://wa.me/2290158249458" class="card-cta">
                     <i class="fas fa-comments"></i> Discuter de mon projet
                 </a>
@@ -1038,7 +1100,7 @@
         <h2 class="section-title section-title-light">Ce que nous faisons pour vous</h2>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">💻</div>
+                <div class="service-icon"><i class="fas fa-code"></i></div>
                 <h3 class="service-title">Développement Web & Mobile</h3>
                 <p class="service-description">Création de sites web modernes performants et d'applications mobiles intuitives pour booster votre présence en ligne et atteindre vos objectifs.</p>
                 <a href="https://wa.me/2290158249458" class="service-cta">
@@ -1046,7 +1108,7 @@
                 </a>
             </div>
             <div class="service-card">
-                <div class="service-icon">📱</div>
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                 <h3 class="service-title">Marketing Digital</h3>
                 <p class="service-description">Stratégies digitales gagnantes pour maximiser votre visibilité, augmenter vos ventes et dominer votre marché.</p>
                 <a href="https://wa.me/2290158249458" class="service-cta">
@@ -1054,7 +1116,7 @@
                 </a>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔒</div>
+                <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
                 <h3 class="service-title">Cybersécurité</h3>
                 <p class="service-description">Protection de vos données numériques et infrastructure avec nos solutions de cybersécurité avancées et personnalisées.</p>
                 <a href="https://wa.me/2290158249458" class="service-cta">
@@ -1124,462 +1186,6 @@
         </div>
     </section>
 
-
-    <section><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-      (function(){
-        emailjs.init("CJhtGfD5GJOUP58Gf"); //  User ID EmailJS
-      })();
-    </script>
-    <style>
-    :root{
-      --magenta:#D9006E;
-      --jaune:#ffb400;
-      --vert:#00c466;
-      --blanc:#fff;
-      --gris:#f8f8f8;
-      --texte:#1a1a1a;
-    }
-    body{
-      font-family: Arial, sans-serif;
-      margin:0;
-      background: var(--gris);
-      color:var(--texte);
-    }
-    
-    section{
-      padding:20px;
-    }
-    form{
-      background:var(--blanc);
-      padding:30px;
-      border-radius:12px;
-      max-width:500px;
-      margin:0 auto;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-    }
-    label{
-      display:block;
-      margin-top:15px;
-      font-weight:bold;
-      color:var(--magenta);
-    }
-    input, select, textarea{
-      width:100%;
-      padding:12px;
-      border:1px solid #ddd;
-      border-radius:8px;
-      margin-top:5px;
-      font-size:15px;
-    }
-    button{
-      background:var(--jaune);
-      color:#000;
-      font-weight:bold;
-      border:none;
-      padding:12px 20px;
-      margin-top:20px;
-      border-radius:8px;
-      cursor:pointer;
-      width:100%;
-      font-size:16px;
-    }
-    button:hover{
-      background:#eaa200;
-    }
-    #champsDynamiques{
-      margin-top:10px;
-    }
-    /* Calendrier */
-    .calendrier{
-      max-width:800px;
-      margin:0 auto;
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-    }
-    iframe{
-      border:none;
-    }
-    /* Calendrier maison */
-    .calendrier{
-      background:var(--blanc);
-      padding:24px 16px 16px 16px;
-      margin-top:20px;
-    }
-    .cal-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:10px;
-    }
-    .cal-btn{
-      background:var(--magenta);
-      color:var(--blanc);
-      border:none;
-      border-radius:6px;
-      font-size:18px;
-      padding:6px 12px;
-      cursor:pointer;
-      transition:background 0.2s;
-    }
-    .cal-btn:hover{
-      background:var(--jaune);
-      color:#000;
-    }
-    .cal-table{
-      width:100%;
-      border-collapse:collapse;
-      margin-bottom:10px;
-    }
-    .cal-table th, .cal-table td{
-      width:14.2%;
-      text-align:center;
-      padding:8px 0;
-      font-size:15px;
-    }
-    .cal-table th{
-      color:var(--magenta);
-      font-weight:bold;
-      background:var(--gris);
-    }
-    .cal-table td{
-      background:var(--gris);
-      border-radius:6px;
-      cursor:pointer;
-      transition:background 0.2s;
-    }
-    .cal-table td:hover{
-      background:var(--jaune);
-      color:#000;
-    }
-    .cal-table td.selected{
-      background:var(--magenta);
-      color:var(--blanc);
-    }
-    .cal-table td.disabled{
-      color:#bbb;
-      background:#f0f0f0;
-      cursor:not-allowed;
-    }
-    #slots{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-bottom:10px;
-    }
-    .slot-btn{
-      background:var(--jaune);
-      color:#000;
-      border:none;
-      border-radius:6px;
-      padding:8px 14px;
-      cursor:pointer;
-      font-size:15px;
-      transition:background 0.2s;
-    }
-    .slot-btn.selected, .slot-btn:hover{
-      background:var(--magenta);
-      color:var(--blanc);
-    }
-    #confirmBtn{
-      background:var(--vert);
-      color:var(--blanc);
-      font-weight:bold;
-      border:none;
-      padding:10px 18px;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:16px;
-      margin-top:5px;
-    }
-    #confirmBtn:hover{
-      background:#009e52;
-    }
-    /* Réalisations */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(400px,0.70fr));
-      gap:20px;
-      margin-top:20px;
-    }
-   
-    .projet{
-      background:var(--blanc);
-      border-radius:12px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-      overflow:hidden;
-      transition:transform 0.2s;
-    }
-    .projet:hover{
-      transform:scale(1.02);
-      box-shadow:0 6px 12px rgba(0,0,0,0.1);
-      cursor:pointer;
-      background-color: #04f67d33;
-    }
-     .projet{
-      background:var(--blanc);
-      border-radius:12px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-      overflow:hidden;
-      transition:transform 0.2s;
-    }
-     .projet{
-      background:var(--blanc);
-      border-radius:12px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-      overflow:hidden;
-      transition:transform 0.2s;
-    }
-
-     .projet{
-      background:var(--blanc);
-      border-radius:12px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-      overflow:hidden;
-      transition:transform 0.2s;
-    }
- 
-
-    .projet img{
-      width:100%;
-      display:block;
-    }
-    .projet-content{
-      padding:12px;
-    }
-    .projet-content h3{
-      color:var(--magenta);
-      margin:5px 0;
-    }
-    .projet-content p{
-      font-size:14px;
-      color:#555;
-    }
-    .projet-content a{
-      display:inline-block;
-      margin-top:8px;
-      color:var(--jaune);
-      font-weight:bold;
-      text-decoration:none;
-    }
-    .projet-content a:hover{
-      text-decoration:underline;
-    }
-  
-    </style>
-
-
-<!-- Module calendrier -->
-<section id="rdvModule">
-  <h2 style="text-align:center;
-      color:var(--magenta);
-      margin-top:30px;">Prendre rendez-vous</h2>
-  <p>Choisissez une date et un créneau horaire pour votre rendez-vous.</p>
-
-  <!-- Informations utilisateur -->
-<div style="max-width:500px;margin:0 auto 20px auto;background:#fff;padding:16px;border-radius:10px;">
-  <label for="rdvNom" style="color:var(--magenta);font-weight:bold;">Nom</label>
-  <input type="text" id="rdvNom" placeholder="Votre nom" required style="width:100%;padding:10px;margin-bottom:10px;">
-  <label for="rdvEmail" style="color:var(--magenta);font-weight:bold;">Email</label>
-  <input type="email" id="rdvEmail" placeholder="Votre email" required style="width:100%;padding:10px;">
-</div>
-  <!-- Calendrier -->
-<div class="calendrier" id="calendrierModule">
-  <div class="cal-header">
-    <button id="prevMonth" class="cal-btn">&#8592;</button>
-    <span id="monthYear"></span>
-    <button id="nextMonth" class="cal-btn">&#8594;</button>
-  </div>
-  <table class="cal-table">
-    <thead>
-      <tr>
-        <th>Lu</th><th>Ma</th><th>Me</th><th>Je</th><th>Ve</th><th>Sa</th><th>Di</th>
-      </tr>
-    </thead>
-    <tbody id="calBody"></tbody>
-  </table>
-  <div id="slotsSection" style="display:none;">
-    <h4 style="color:var(--magenta);margin:10px 0 5px 0;">Créneaux disponibles</h4>
-    <div id="slots"></div>
-    <button id="confirmBtn" style="display:none;">Confirmer le rendez-vous</button>
-    <div id="confirmationMsg" style="margin-top:10px;color:var(--vert);font-weight:bold;"></div>
-  </div>
-</div>
-</section>
-
-<!-- Nos réalisations -->
-<section>
-  <h2>Nos réalisations</h2>
-  <div class="grid">
-    <div class="projet">
-      <img src="./faq9.jpeg" alt="Projet 1">
-      <div class="projet-content">
-        <h3>Site vitrine XYZ</h3>
-        <p>Création d’un site moderne et responsive pour un cabinet de conseil.</p>
-        <a href="#">Voir le site</a>
-      </div>
-    </div>
-    <div class="projet">
-      <img src="./faq18.jpeg" alt="Projet 2">
-      <div class="projet-content">
-        <h3>Boutique en ligne ABC</h3>
-        <p>Développement d'une boutique e-commerce avec paiement sécurisé.</p>
-        <a href="#">Voir le site</a>
-      </div>
-    </div>
-    <div class="projet">
-      <img src="faq14.jpeg" alt="Projet 3">
-      <div class="projet-content">
-        <h3>Gestion réseaux sociaux DEF</h3>
-        <p>Campagne publicitaire et gestion des réseaux sociaux.</p>
-        <a href="#">Voir le projet</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-const serviceSelect = document.getElementById("serviceSelect");
-const champsDynamiques = document.getElementById("champsDynamiques");
-
-// Calendrier maison inspiré de Calendly
-const calBody = document.getElementById('calBody');
-const monthYear = document.getElementById('monthYear');
-const prevMonth = document.getElementById('prevMonth');
-const nextMonth = document.getElementById('nextMonth');
-const slotsSection = document.getElementById('slotsSection');
-const slotsDiv = document.getElementById('slots');
-const confirmBtn = document.getElementById('confirmBtn');
-const confirmationMsg = document.getElementById('confirmationMsg');
-
-let today = new Date();
-let currentMonth = today.getMonth();
-let currentYear = today.getFullYear();
-let selectedDate = null;
-let selectedSlot = null;
-
-// Créneaux types (exemple)
-const slots = [
-  "09:00", "10:00", "11:00", "14:00", "15:00", "16:00"
-];
-
-// Correction affichage mois/année et désactivation jours passés
-const realToday = new Date();
-
-function renderCalendar(month, year) {
-  calBody.innerHTML = "";
-  const moisNom = new Date(year, month).toLocaleString('fr-FR', { month: 'long' });
-  monthYear.textContent = `${moisNom.charAt(0).toUpperCase() + moisNom.slice(1)} ${year}`;
-  let firstDay = new Date(year, month, 1).getDay() || 7; // Lundi=1
-  let daysInMonth = new Date(year, month+1, 0).getDate();
-  let date = 1;
-  for(let i=0; i<6; i++){
-    let row = document.createElement('tr');
-    for(let j=1; j<=7; j++){
-      let cell = document.createElement('td');
-      if(i===0 && j<firstDay){
-        cell.textContent = "";
-        cell.classList.add('disabled');
-      }else if(date > daysInMonth){
-        cell.textContent = "";
-        cell.classList.add('disabled');
-      }else{
-        cell.textContent = date;
-        let cellDate = new Date(year, month, date);
-        if(cellDate < new Date(realToday.getFullYear(), realToday.getMonth(), realToday.getDate())){
-          cell.classList.add('disabled');
-        }else{
-          cell.addEventListener('click', function(){
-            document.querySelectorAll('.cal-table td').forEach(td=>td.classList.remove('selected'));
-            cell.classList.add('selected');
-            selectedDate = new Date(year, month, date);
-            showSlots();
-          });
-        }
-        date++;
-      }
-      row.appendChild(cell);
-    }
-    calBody.appendChild(row);
-    if(date > daysInMonth) break;
-  }
-}
-
-prevMonth.onclick = ()=>{
-  if(currentMonth === 0){
-    currentMonth = 11;
-    currentYear--;
-  }else{
-    currentMonth--;
-  }
-  renderCalendar(currentMonth, currentYear);
-  slotsSection.style.display = "none";
-};
-
-nextMonth.onclick = ()=>{
-  if(currentMonth === 11){
-    currentMonth = 0;
-    currentYear++;
-  }else{
-    currentMonth++;
-  }
-  renderCalendar(currentMonth, currentYear);
-  slotsSection.style.display = "none";
-};
-
-renderCalendar(currentMonth, currentYear);
-
-function showSlots(){
-  slotsSection.style.display = "block";
-  slotsDiv.innerHTML = "";
-  selectedSlot = null;
-  confirmBtn.style.display = "none";
-  confirmationMsg.textContent = "";
-  slots.forEach(slot=>{
-    let btn = document.createElement('button');
-    btn.textContent = slot;
-    btn.className = "slot-btn";
-    btn.onclick = ()=>{
-      document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
-      btn.classList.add('selected');
-      selectedSlot = slot;
-      confirmBtn.style.display = "block";
-      confirmationMsg.textContent = "";
-    };
-    slotsDiv.appendChild(btn);
-  });
-}
-
-// ENVOI EMAIL RENDEZ-VOUS
-
-// ...existing code...
-confirmBtn.onclick = ()=>{
-  const name = document.getElementById('rdvNom').value.trim();
-  const email = document.getElementById('rdvEmail').value.trim();
-  if(!name || !email){
-    confirmationMsg.textContent = "Merci de renseigner votre nom et votre email.";
-    return;
-  }
-  if(selectedDate && selectedSlot){
-    emailjs.send("service_85qkene", "template_a737obo", {
-      name: name, // <-- clé 'name' partout
-      date: selectedDate.toLocaleDateString('fr-FR'),
-      heure: selectedSlot,
-      email: email,
-      to_email: "Netcorp.dev.Contact@gmail.com"
-    })
-    .then(function(response) {
-      confirmationMsg.innerHTML = `Rendez-vous demandé le ${selectedDate.toLocaleDateString('fr-FR')} à ${selectedSlot} !<br>Un email a été envoyé à Netcorp.<br><span style="color:var(--magenta);">Vous recevrez la confirmation de votre rendez-vous par email.</span>`;
-      confirmBtn.style.display = "none";
-    }, function(error) {
-      confirmationMsg.textContent = "Prise de rendez-vous échouée. Veuillez réessayer.";
-    });
-  }
-};
-// ...existing code...
-
-</script></section>
-
     <!-- Footer -->
     <footer class="footer">
         <p class="footer-text">NetCorp - Votre succès en ligne commence ici</p>
@@ -1592,24 +1198,64 @@ confirmBtn.onclick = ()=>{
         </div>
     </footer>
     
-    <!-- Scripts -->
+    <!-- Scripts améliorés -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Création des particules animées
+            function createParticles() {
+                const container = document.getElementById('particles');
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Position aléatoire
+                    const size = Math.random() * 20 + 5;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const delay = Math.random() * 20;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.background = `radial-gradient(circle, var(--primary-accent), transparent)`;
+                    
+                    container.appendChild(particle);
+                }
+            }
+            
+            createParticles();
+
+            // Animation de la navbar au scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
             // Animation du contenu hero
             setTimeout(() => {
                 document.querySelector('.hero-content').classList.add('animate');
             }, 300);
             
-            // Animation des éléments au défilement
+            // Animation des éléments au défilement améliorée
             function animateOnScroll() {
                 const elements = document.querySelectorAll('.section-title, .reason-card, .service-card, .testimonial');
                 
-                elements.forEach(element => {
+                elements.forEach((element, index) => {
                     const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight * 0.8;
+                    const screenPosition = window.innerHeight * 0.85;
                     
                     if(elementPosition < screenPosition) {
-                        element.classList.add('animate');
+                        setTimeout(() => {
+                            element.classList.add('animate');
+                        }, index * 200);
                     }
                 });
             }
@@ -1642,105 +1288,97 @@ confirmBtn.onclick = ()=>{
                 });
             });
             
-            // Animation des cartes de services au survol
-            document.querySelectorAll('.service-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+            // Effet de vague sur les boutons
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
                     
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+                    ripple.classList.add('ripple');
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
                 });
             });
             
-            // Validation de formulaire
+            // Validation de formulaire améliorée
             const form = document.getElementById('whatsappForm');
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const serviceSelect = document.getElementById('service');
+            const inputs = form.querySelectorAll('input, select, textarea');
             
-            nameInput.addEventListener('input', function() {
-                if(this.value.length > 2) {
-                    this.style.borderColor = '#28a745';
-                } else {
-                    this.style.borderColor = '#dc3545';
-                }
-            });
-            
-            emailInput.addEventListener('input', function() {
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if(emailPattern.test(this.value)) {
-                    this.style.borderColor = '#28a745';
-                } else {
-                    this.style.borderColor = '#dc3545';
-                }
-            });
-            
-            serviceSelect.addEventListener('change', function() {
-                if(this.value !== "Quel service vous intéresse ?") {
-                    this.style.borderColor = '#28a745';
-                } else {
-                    this.style.borderColor = '#dc3545';
-                }
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                input.addEventListener('blur', function() {
+                    if (this.value === '') {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
             });
             
             // Fonction pour envoyer le formulaire via WhatsApp
             function send(event) {
-                event.preventDefault(); // Empêche l'envoi classique du formulaire
+                event.preventDefault();
                 
                 let isValid = true;
                 
-                // Validation
-                if(nameInput.value.length < 3) {
-                    nameInput.style.borderColor = '#dc3545';
-                    isValid = false;
-                }
+                // Validation améliorée
+                inputs.forEach(input => {
+                    if (input.hasAttribute('required') && !input.value.trim()) {
+                        input.style.borderColor = '#dc3545';
+                        isValid = false;
+                    } else if (input.type === 'email') {
+                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailPattern.test(input.value)) {
+                            input.style.borderColor = '#dc3545';
+                            isValid = false;
+                        } else {
+                            input.style.borderColor = '#28a745';
+                        }
+                    } else if (input.value.trim()) {
+                        input.style.borderColor = '#28a745';
+                    }
+                });
                 
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if(!emailPattern.test(emailInput.value)) {
-                    emailInput.style.borderColor = '#dc3545';
-                    isValid = false;
-                }
-                
-                if(serviceSelect.value === "Quel service vous intéresse ?") {
-                    serviceSelect.style.borderColor = '#dc3545';
-                    isValid = false;
-                }
-                
-                if(!isValid) {
+                if (!isValid) {
                     alert('Veuillez remplir correctement tous les champs obligatoires.');
                     return;
                 }
                 
-                const name = nameInput.value;
-                const email = emailInput.value;
-                const service = serviceSelect.value;
-                const message = document.querySelector('.form-textarea').value;
+                const formData = new FormData(form);
+                const message = `Bonjour, je m'appelle ${formData.get('name')}.\nMon email est ${formData.get('email')}.\nJe suis intéressé par le service : ${formData.get('service')}.\nMessage : ${formData.get('message') || 'Aucun message supplémentaire'}`;
                 
-                const whatsappMessage = `Bonjour, je m'appelle ${name}.\nMon email est ${email}.\nJe suis intéressé par le service : ${service}.\nMessage : ${message}`;
-                const whatsappUrl = `https://wa.me/2290158249458?text=${encodeURIComponent(whatsappMessage)}`;
-                
+                const whatsappUrl = `https://wa.me/2290158249458?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
                 
-                // Réinitialisation du formulaire
-                form.reset();
-                nameInput.style.borderColor = '';
-                emailInput.style.borderColor = '';
-                serviceSelect.style.borderColor = '';
-                
-                // Feedback visuel
-                const submitButton = document.querySelector('.submit-button');
-                submitButton.innerHTML = '<i class="fas fa-check"></i> Envoyé avec succès!';
-                submitButton.style.backgroundColor = '#28a745';
-                
+                // Réinitialisation avec animation
+                form.style.opacity = '0.5';
                 setTimeout(() => {
-                    submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';
-                    submitButton.style.backgroundColor = '';
-                }, 3000);
+                    form.reset();
+                    form.style.opacity = '1';
+                    inputs.forEach(input => input.style.borderColor = '');
+                    
+                    const submitButton = form.querySelector('.submit-button');
+                    submitButton.innerHTML = '<i class="fas fa-check"></i> Envoyé avec succès!';
+                    submitButton.style.background = 'var(--success)';
+                    
+                    setTimeout(() => {
+                        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';
+                        submitButton.style.background = '';
+                    }, 3000);
+                }, 500);
             }
             
-            // Intercepte la soumission du formulaire
             form.addEventListener('submit', send);
         });
     </script>
