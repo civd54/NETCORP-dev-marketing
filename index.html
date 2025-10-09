@@ -4,38 +4,17 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-849SRDCFF5"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-849SRDCFF5');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-849SRDCFF5');
     </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NetCorp - Développement web, marketing digital et cybersécurité à Abomey-Calavi">
-    <!-- Balises Open Graph pour Facebook, LinkedIn, WhatsApp, etc. -->
-    <meta property="og:title" content="NETCORP - Développement Web, marketing digital & Cybersécurité">
-    <meta property="og:description" content="Solutions complètes en développement web, marketing digital et sécurité informatique">
-    <meta property="og:image" content="https://civd54.github.io/NETCORP-dev-marketing/Logo2.jpg">
-    <meta property="og:url" content="https://civd54.github.io/NETCORP-dev-marketing/">
-    <meta property="og:type" content="website">
-
-    <!-- Balises Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NETCORP - Experts en solutions digitales">
-    <meta name="twitter:description" content="Agence spécialisée en développement web, marketing digital et cybersécurité">
-    <meta name="twitter:image" content="https://civd54.github.io/NETCORP-dev-marketing/NetCorp%20logo.png">
-    <title>NetCorp - Votre succès en ligne commence ici</title>
+    <meta name="description" content="NetCorp - Votre partenaire en développement web, marketing digital et cybersécurité à Abomey-Calavi, Bénin">
+    <title>NetCorp - Votre succès digital commence ici</title>
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "s47y6eznrm");
-    </script>
     <style>
         /* ===== NOUVELLE PALETTE DE COULEURS DÉVELOPPEUR ===== */
         :root {
@@ -210,6 +189,12 @@
             color: var(--primary-accent);
         }
 
+        .nav-link.active {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+        }
+
         .nav-cta-button {
             display: inline-block;
             background: transparent;
@@ -304,10 +289,37 @@
             50% { transform: translateY(-5px) rotate(-1deg); }
         }
 
+        /* ===== BOUTON HAMBURGER ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: var(--transition-smooth);
+        }
+        
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
         /* ===== HERO SECTION STYLE DÉVELOPPEUR ===== */
-        .hero-section {
+        .hero {
             background: var(--gradient-hero), 
-                        url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+                        linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(17, 34, 64, 0.8));
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -319,7 +331,7 @@
             overflow: hidden;
         }
 
-        .hero-section::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -473,129 +485,19 @@
             to { width: 100px; }
         }
 
-        /* ===== WHY SECTION AMÉLIORÉE ===== */
-        .why-section {
+        /* ===== SERVICES SECTION ===== */
+        .services-section {
             padding: 8rem 2rem;
             background: var(--secondary-accent);
             position: relative;
         }
 
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .reason-card {
-            background: var(--card-bg);
-            padding: 3rem 2rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            opacity: 0;
-            transform: translateY(50px);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-        }
-
-        .reason-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .reason-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .reason-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reason-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            border-color: rgba(100, 255, 218, 0.3);
-        }
-
-        .reason-title {
-            color: var(--primary-accent);
-            margin-bottom: 1.5rem;
-            font-family: 'Courier New', monospace;
-            font-size: 1.5rem;
-        }
-
-        .reason-text {
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        .card-cta {
-            display: inline-block;
-            color: var(--primary-accent);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-            border: 1px solid transparent;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-        }
-
-        .card-cta:hover {
-            border-color: var(--primary-accent);
-            background: rgba(100, 255, 218, 0.05);
-        }
-
-        /* ===== SERVICES SECTION AMÉLIORÉE ===== */
-        .services-section {
-            padding: 8rem 2rem;
-            background: var(--primary-dark);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .services-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop') center/cover;
-            opacity: 0.05;
-            animation: backgroundMove 30s linear infinite;
-        }
-
-        @keyframes backgroundMove {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(1deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
         }
 
         .service-card {
@@ -603,13 +505,11 @@
             padding: 3rem 2rem;
             border-radius: 8px;
             text-align: center;
-            border: 1px solid rgba(100, 255, 218, 0.1);
             transition: var(--transition-smooth);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
             opacity: 0;
             transform: translateY(50px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .service-card.animate {
@@ -618,116 +518,36 @@
         }
 
         .service-card:hover {
-            background: rgba(17, 34, 64, 0.9);
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: var(--hover-elevate);
+            box-shadow: var(--hover-shadow);
             border-color: rgba(100, 255, 218, 0.3);
         }
 
         .service-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            transition: transform 0.5s ease;
-            display: inline-block;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-accent);
+            transition: transform 0.5s ease;
         }
 
         .service-card:hover .service-icon {
-            transform: scale(1.3);
-            animation: iconBounce 0.6s ease;
-        }
-
-        @keyframes iconBounce {
-            0%, 100% { transform: scale(1.3); }
-            50% { transform: scale(1.4); }
+            transform: scale(1.2);
         }
 
         .service-title {
-            color: var(--primary-accent);
-            margin-bottom: 1.5rem;
-            font-family: 'Courier New', monospace;
             font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
         }
 
         .service-description {
             color: var(--text-dark);
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        .service-cta {
-            display: inline-block;
-            color: var(--primary-accent);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-            border: 1px solid transparent;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-        }
-
-        .service-cta:hover {
-            border-color: var(--primary-accent);
-            background: rgba(100, 255, 218, 0.05);
-        }
-
-        /* ===== TESTIMONIALS SECTION AMÉLIORÉE ===== */
-        .testimonials-section {
-            padding: 8rem 2rem;
-            background: var(--secondary-accent);
-            text-align: center;
-            position: relative;
-        }
-
-        .testimonial {
-            max-width: 800px;
-            margin: 0 auto 4rem;
-            padding: 3rem;
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            position: relative;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-        }
-
-        .testimonial.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .testimonial::before {
-            content: '"';
-            position: absolute;
-            top: -30px;
-            left: 30px;
-            font-size: 8rem;
-            color: var(--primary-accent);
-            opacity: 0.1;
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--text-light);
+            line-height: 1.7;
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
         }
 
-        .testimonial-author {
-            color: var(--primary-accent);
-            font-weight: bold;
-            font-family: 'Courier New', monospace;
-        }
-
-        .testimonial-cta-container {
-            margin-top: 3rem;
-        }
-
-        /* ===== CTA SECTION AMÉLIORÉE ===== */
+        /* ===== CTA SECTION STYLE DÉVELOPPEUR ===== */
         .cta-section {
             padding: 8rem 2rem;
             text-align: center;
@@ -755,10 +575,18 @@
             100% { transform: translateY(-100px) translateX(-100px); }
         }
 
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .cta-title {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             color: var(--text-light);
+            font-family: 'Courier New', monospace;
         }
 
         .cta-subtitle {
@@ -769,96 +597,17 @@
 
         .cta-main {
             margin-bottom: 2rem;
-        }
-
-        .cta-guarantee {
-            color: var(--primary-accent);
-            font-family: 'Courier New', monospace;
-        }
-
-        /* ===== CONTACT SECTION AMÉLIORÉE ===== */
-        .contact-section {
-            padding: 8rem 2rem;
-            background: var(--primary-dark);
-        }
-
-        .contact-subtitle {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text-dark);
-            font-size: 1.2rem;
-        }
-
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-            display: grid;
-            gap: 2rem;
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(100, 255, 218, 0.1);
-        }
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            border-radius: 4px;
-            background: rgba(10, 25, 47, 0.5);
-            color: var(--text-light);
-            font-family: 'Courier New', monospace;
-            transition: var(--transition-smooth);
-        }
-
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
-        }
-
-        .submit-button {
             background: transparent;
-            color: var(--primary-accent);
-            padding: 1.2rem;
-            border: 1px solid var(--primary-accent);
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-family: 'Courier New', monospace;
-            font-size: 1.1rem;
+            color: var(--text-light);
+            border: 1px solid var(--text-light);
         }
 
-        .submit-button:hover {
-            background: rgba(100, 255, 218, 0.1);
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+        .cta-main:hover {
+            background: var(--text-light);
+            color: var(--primary-dark);
         }
 
-        .contact-alt-cta {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .phone-cta {
-            display: inline-block;
-            color: var(--primary-accent);
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            padding: 1rem 2rem;
-            border: 1px solid var(--primary-accent);
-            border-radius: 4px;
-            transition: var(--transition-smooth);
-        }
-
-        .phone-cta:hover {
-            background: rgba(100, 255, 218, 0.1);
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
-        }
-
-        /* ===== FOOTER AMÉLIORÉ ===== */
+        /* ===== FOOTER STYLE DÉVELOPPEUR ===== */
         .footer {
             background: var(--secondary-accent);
             color: var(--white);
@@ -876,11 +625,21 @@
 
         .footer-contact {
             color: var(--text-dark);
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-cta {
+            margin-top: 1.5rem;
         }
 
         .footer-button {
-            margin-top: 1rem;
+            background: transparent;
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+        }
+
+        .footer-button:hover {
+            background: rgba(100, 255, 218, 0.1);
         }
 
         /* ===== BOUTON WHATSAPP AMÉLIORÉ ===== */
@@ -914,27 +673,39 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* ===== RESPONSIVE AMÉLIORÉ ===== */
+        /* ===== BOUTON RETOUR EN HAUT ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 99;
+            background: rgba(10, 25, 47, 0.8);
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .services-grid,
-            .reasons-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .reason-card,
-            .service-card {
-                padding: 2rem 1.5rem;
-            }
-            
             .navbar {
                 padding: 0.8rem 1rem;
             }
@@ -961,55 +732,28 @@
             
             .hamburger {
                 display: flex;
-                flex-direction: column;
-                cursor: pointer;
             }
             
-            .bar {
-                width: 25px;
-                height: 3px;
-                background: var(--text-light);
-                margin: 3px 0;
-                transition: var(--transition-smooth);
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .hamburger.active .bar:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
+            .section-title {
+                font-size: 2.2rem;
             }
             
-            .hamburger.active .bar:nth-child(2) {
-                opacity: 0;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .hamburger.active .bar:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-        }
-
-        /* ===== ANIMATION DE TEXTE TAPÉ ===== */
-        .typewriter {
-            overflow: hidden;
-            border-right: 3px solid var(--primary-accent);
-            white-space: nowrap;
-            margin: 0 auto;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary-accent) }
-        }
-
-        /* Style pour le bouton hamburger (caché sur desktop) */
-        .hamburger {
-            display: none;
         }
     </style>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "s47y6eznrm");
+</script>
 </head>
 <body>
     <!-- Effet de code qui défile en arrière-plan -->
@@ -1020,18 +764,18 @@
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
             <div class="logo-container">
-                <img src="./logo_net2.0.png" alt="Logo NetCorp" class="logo-icon">
+                <!--<img src="./logo_net2.0.png" alt="Logo NetCorp" class="logo-icon">-->
                 <span class="logo-net">Net</span><span class="logo-corp">Corp</span>
             </div>
         </a>
         
         <ul class="nav-list">
-            <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+            <li class="nav-item"><a href="index.html" class="nav-link active">Accueil</a></li>
             <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
             <li class="nav-item"><a href="A propos.html" class="nav-link">À Propos</a></li>
-            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
             <!-- Bouton CTA dans la navigation -->
             <li class="nav-item nav-cta">
@@ -1040,7 +784,8 @@
                 </a>
             </li>
         </ul>
-        <!--Bouton hamburger pour mobile-->
+        
+        <!-- Bouton hamburger pour mobile -->
         <div class="hamburger">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -1055,133 +800,89 @@
         </a>
     </div>
 
+    <!-- Bouton retour en haut -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <!-- Hero Section -->
-    <header class="hero-section">
+    <header class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Transformez votre présence en ligne en machine à attirer des clients</h1>
-            <p class="hero-subtitle">Découvrez les solutions digitales qui vous aideront à dominer votre marché : Sites web et Applications mobiles percutants, marketing digital explosif et cybersécurité maximale</p>
-            <a href="#contact" class="cta-button hero-cta">
-                <span><i class="fas fa-gift"></i> Commencez votre transformation digitale</span>
+            <h1 class="hero-title">Votre succès digital commence ici</h1>
+            <p class="hero-subtitle">NetCorp transforme vos idées en solutions numériques performantes. Développement web, applications mobiles, marketing digital et cybersécurité.</p>
+            <a href="#services" class="cta-button hero-cta">
+                <i class="fas fa-rocket"></i> Découvrir nos services
             </a>
-            <p class="cta-note">Offre limitée aux 10 premiers clients ce mois-ci</p>
         </div>
     </header>
 
-    <!-- Pourquoi NetCorp -->
-    <section class="why-section">
-        <h2 class="section-title">Pourquoi choisir NetCorp ?</h2>
-        <div class="reasons-grid">
-            <div class="reason-card">
-                <h3 class="reason-title">Accompagnement sur-mesure</h3>
-                <p class="reason-text">Votre business, notre priorité. Des solutions personnalisées pour des résultats exceptionnels. Nous ne vous proposons pas que des solutions, nous vous proposons des résultats.</p>
-                <a href="https://wa.me/2290158249458" class="card-cta">
-                    <i class="fas fa-comments"></i> Discuter de mon projet
-                </a>
-            </div>
-            <div class="reason-card">
-                <h3 class="reason-title">Expertise locale & internationale</h3>
-                <p class="reason-text">L'expertise qui fait la différence. Des professionnels qui connaissent leur domaine, des résultats qui parlent d'eux-mêmes.</p>
-                <a href="https://wa.me/2290158249458" class="card-cta">
-                    <i class="fas fa-comments"></i> Discuter de mon projet
-                </a>
-            </div>
-            <div class="reason-card">
-                <h3 class="reason-title">Résultats mesurables</h3>
-                <p class="reason-text">Plus de clients. Moins de stress, des chiffres qui parlent et qui prouvent notre efficacité. Nous ne promettons pas, nous réalisons.</p>
-                <a href="https://wa.me/2290158249458" class="card-cta">
-                    <i class="fas fa-comments"></i> Discuter de mon projet
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
+    <!-- Services Section -->
     <section id="services" class="services-section">
-        <h2 class="section-title section-title-light">Ce que nous faisons pour vous</h2>
+        <h2 class="section-title">Nos Services</h2>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon"><i class="fas fa-code"></i></div>
-                <h3 class="service-title">Développement Web & Mobile</h3>
-                <p class="service-description">Création de sites web modernes performants et d'applications mobiles intuitives pour booster votre présence en ligne et atteindre vos objectifs.</p>
-                <a href="https://wa.me/2290158249458" class="service-cta">
-                    <i class="fas fa-code"></i> Lancer mon projet web & mobile
-                </a>
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="service-title">Développement Web</h3>
+                <p class="service-description">Des sites web sur mesure, responsives et optimisés pour les performances et le référencement.</p>
+                <a href="services.html#web" class="cta-button">En savoir plus</a>
             </div>
+            
             <div class="service-card">
-                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
-                <h3 class="service-title">Marketing Digital</h3>
-                <p class="service-description">Stratégies digitales gagnantes pour maximiser votre visibilité, augmenter vos ventes et dominer votre marché.</p>
-                <a href="https://wa.me/2290158249458" class="service-cta">
-                    <i class="fas fa-chart-line"></i> Booster mes ventes
-                </a>
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="service-title">Applications Mobiles</h3>
+                <p class="service-description">Applications iOS et Android natives et hybrides pour étendre votre présence mobile.</p>
+                <a href="services.html#mobile" class="cta-button">En savoir plus</a>
             </div>
+            
             <div class="service-card">
-                <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3 class="service-title">Design & Identité Visuelle</h3>
+                <p class="service-description">Logos, chartes graphiques et interfaces utilisateur qui reflètent l'essence de votre marque.</p>
+                <a href="services.html#design" class="cta-button">En savoir plus</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
                 <h3 class="service-title">Cybersécurité</h3>
-                <p class="service-description">Protection de vos données numériques et infrastructure avec nos solutions de cybersécurité avancées et personnalisées.</p>
-                <a href="https://wa.me/2290158249458" class="service-cta">
-                    <i class="fas fa-shield-alt"></i> Sécuriser mon entreprise
-                </a>
+                <p class="service-description">Protection de vos données et systèmes contre les menaces numériques.</p>
+                <a href="services.html#security" class="cta-button">En savoir plus</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="service-title">Marketing Digital</h3>
+                <p class="service-description">Stratégies de présence en ligne et community management pour booster votre visibilité.</p>
+                <a href="services.html#marketing" class="cta-button">En savoir plus</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3 class="service-title">Hébergement & Maintenance</h3>
+                <p class="service-description">Solutions d'hébergement sécurisées et services de maintenance continue.</p>
+                <a href="services.html#hosting" class="cta-button">En savoir plus</a>
             </div>
         </div>
     </section>
 
-    <!-- Témoignages -->
-    <section class="testimonials-section">
-        <h2 class="section-title">Ils nous font confiance</h2>
-        <div class="testimonial">
-            <p class="testimonial-text">"Grâce à NetCorp, j'ai triplé mes demandes en 2 semaines !"</p>
-            <p class="testimonial-author">- Franck MESSANN</p>
-        </div>
-        <div class="testimonial">
-            <p class="testimonial-text">"Enfin une équipe qui comprend ce que je veux et le fait bien"</p>
-            <p class="testimonial-author">- Clara FLANDERS</p>
-        </div>
-        <!-- Bouton CTA après témoignages -->
-        <div class="testimonial-cta-container">
-            <a href="#contact" class="cta-button testimonial-cta">
-                <i class="fas fa-star"></i> Obtenir les mêmes résultats
-            </a>
-        </div>
-    </section>
-
-    <!-- CTA -->
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-content">
-            <h2 class="cta-title">Et si c'était le bon moment de faire décoller votre activité ?</h2>
-            <p class="cta-subtitle">Profitez de notre offre spéciale de lancement</p>
-            <a href="https://wa.me/2290158249458" class="cta-button cta-main">
-                <i class="fas fa-rocket"></i> Je veux commencer maintenant
-            </a>
-            <p class="cta-guarantee">
-                <i class="fas fa-shield-alt"></i> Satisfaction garantie ou remboursé
-            </p>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Demandez votre audit gratuit</h2>
-        <p class="contact-subtitle">Remplissez le formulaire et nous vous contacterons dans les 24h</p>
-        <form class="contact-form" id="whatsappForm">
-            <input type="text" class="form-input" placeholder="Nom & Prénom" name="name" required id="name">
-            <input type="email" class="form-input" placeholder="Email" required name="email" id="email">
-            <select class="form-select" name="service" required id="service">
-                <option>Quel service vous intéresse ?</option>
-                <option>Développement Web</option>
-                <option>Marketing Digital</option>
-                <option>Cybersécurité</option>
-            </select>
-            <textarea class="form-textarea" placeholder="Message (optionnel)" name="message"></textarea>
-            <button type="submit" class="submit-button">
-                <i class="fas fa-paper-plane"></i> Envoyer ma demande
-            </button>
-        </form>
-        <!-- Bouton alternatif -->
-        <div class="contact-alt-cta">
-            <p>Préférez-vous discuter directement ?</p>
-            <a href="tel:+2290158249458" class="phone-cta">
-                <i class="fas fa-phone-alt"></i> Appelez-nous: +229 0158249458
+            <h2 class="cta-title">Prêt à transformer votre entreprise avec une équipe passionnée à vos côtés ?</h2>
+            <p class="cta-subtitle">Contactez-nous dès aujourd'hui pour un audit gratuit de votre projet.</p>
+            <a href="#contact" class="cta-button cta-main">
+                <i class="fas fa-rocket"></i> Démarrer un projet
             </a>
         </div>
     </section>
@@ -1190,7 +891,7 @@
     <footer class="footer">
         <p class="footer-text">NetCorp - Votre succès en ligne commence ici</p>
         <p class="footer-contact">contact@netcorp.com | WhatsApp : +229 0158249458</p>
-        <!-- Dernier CTA dans le footer -->
+        <p class="footer-contact">Abomey-Calavi, Bénin</p>
         <div class="footer-cta">
             <a href="#contact" class="cta-button footer-button">
                 <i class="fas fa-calendar-alt"></i> Planifier un appel
@@ -1198,7 +899,6 @@
         </div>
     </footer>
     
-    <!-- Scripts améliorés -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Création des particules animées
@@ -1237,6 +937,14 @@
                 } else {
                     navbar.classList.remove('scrolled');
                 }
+
+                // Bouton retour en haut
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
             });
 
             // Animation du contenu hero
@@ -1246,7 +954,7 @@
             
             // Animation des éléments au défilement améliorée
             function animateOnScroll() {
-                const elements = document.querySelectorAll('.section-title, .reason-card, .service-card, .testimonial');
+                const elements = document.querySelectorAll('.section-title, .service-card');
                 
                 elements.forEach((element, index) => {
                     const elementPosition = element.getBoundingClientRect().top;
@@ -1287,99 +995,30 @@
                     document.body.style.overflow = 'auto';
                 });
             });
-            
-            // Effet de vague sur les boutons
-            document.querySelectorAll('.cta-button').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    ripple.classList.add('ripple');
-                    
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
+
+            // Bouton retour en haut
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
             });
-            
-            // Validation de formulaire améliorée
-            const form = document.getElementById('whatsappForm');
-            const inputs = form.querySelectorAll('input, select, textarea');
-            
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.parentElement.classList.add('focused');
-                });
-                
-                input.addEventListener('blur', function() {
-                    if (this.value === '') {
-                        this.parentElement.classList.remove('focused');
-                    }
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    // Fermer le menu mobile si ouvert
+                    document.querySelector('.hamburger').classList.remove('active');
+                    document.querySelector('.nav-list').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
-            
-            // Fonction pour envoyer le formulaire via WhatsApp
-            function send(event) {
-                event.preventDefault();
-                
-                let isValid = true;
-                
-                // Validation améliorée
-                inputs.forEach(input => {
-                    if (input.hasAttribute('required') && !input.value.trim()) {
-                        input.style.borderColor = '#dc3545';
-                        isValid = false;
-                    } else if (input.type === 'email') {
-                        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        if (!emailPattern.test(input.value)) {
-                            input.style.borderColor = '#dc3545';
-                            isValid = false;
-                        } else {
-                            input.style.borderColor = '#28a745';
-                        }
-                    } else if (input.value.trim()) {
-                        input.style.borderColor = '#28a745';
-                    }
-                });
-                
-                if (!isValid) {
-                    alert('Veuillez remplir correctement tous les champs obligatoires.');
-                    return;
-                }
-                
-                const formData = new FormData(form);
-                const message = `Bonjour, je m'appelle ${formData.get('name')}.\nMon email est ${formData.get('email')}.\nJe suis intéressé par le service : ${formData.get('service')}.\nMessage : ${formData.get('message') || 'Aucun message supplémentaire'}`;
-                
-                const whatsappUrl = `https://wa.me/2290158249458?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
-                
-                // Réinitialisation avec animation
-                form.style.opacity = '0.5';
-                setTimeout(() => {
-                    form.reset();
-                    form.style.opacity = '1';
-                    inputs.forEach(input => input.style.borderColor = '');
-                    
-                    const submitButton = form.querySelector('.submit-button');
-                    submitButton.innerHTML = '<i class="fas fa-check"></i> Envoyé avec succès!';
-                    submitButton.style.background = 'var(--success)';
-                    
-                    setTimeout(() => {
-                        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande';
-                        submitButton.style.background = '';
-                    }, 3000);
-                }, 500);
-            }
-            
-            form.addEventListener('submit', send);
         });
     </script>
 </body>

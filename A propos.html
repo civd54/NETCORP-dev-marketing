@@ -75,6 +75,46 @@
             100% { background-position: 0 1000px, 0 1000px; }
         }
 
+        /* ===== EFFET DE PARTICULES ===== */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-accent);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatParticle 20s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            25% {
+                opacity: 0.15;
+            }
+            50% {
+                transform: translateY(-100px) translateX(100px) rotate(180deg);
+                opacity: 0.2;
+            }
+            75% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+
         /* ===== NAVIGATION STYLE DÉVELOPPEUR ===== */
         .navbar {
             background: rgba(10, 25, 47, 0.95);
@@ -91,6 +131,12 @@
             padding: 0.8rem 2rem;
             transition: all 0.4s ease;
             border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 25, 47, 0.98);
+            padding: 0.6rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .nav-list {
@@ -137,6 +183,12 @@
             color: var(--primary-accent);
         }
 
+        .nav-link.active {
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+        }
+
         /* Logo NetCorp style développeur */
         .logo {
             display: flex;
@@ -146,6 +198,13 @@
             font-size: 1.8rem;
             letter-spacing: -1px;
             position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.5s ease;
         }
         
         .logo-net {
@@ -164,6 +223,16 @@
         
         .logo:hover .logo-container {
             transform: scale(1.1);
+        }
+        
+        .logo-icon {
+            height: 45px;
+            transition: transform 0.5s ease;
+            filter: brightness(0) invert(1);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(360deg);
         }
         
         @keyframes floatNet {
@@ -217,17 +286,28 @@
         /* Bouton hamburger */
         .hamburger {
             display: none;
+            flex-direction: column;
             cursor: pointer;
-            z-index: 1000;
         }
         
-        .hamburger .bar {
-            display: block;
+        .bar {
             width: 25px;
             height: 3px;
-            margin: 5px auto;
-            background-color: var(--text-light);
-            transition: all 0.3s ease;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: var(--transition-smooth);
+        }
+        
+        .hamburger.active .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         /* Bouton WhatsApp flottant */
@@ -285,7 +365,7 @@
         /* ===== HERO SECTION STYLE DÉVELOPPEUR ===== */
         .about-hero {
             background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(100, 255, 218, 0.1)), 
-                        url('a propos_back.jpeg') center/cover no-repeat;
+                        linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(17, 34, 64, 0.8));
             min-height: 70vh;
             display: flex;
             align-items: center;
@@ -496,6 +576,7 @@
             border: 3px solid var(--primary-accent);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            display: flex;
             align-items: center;
             justify-content: center;
             background: var(--secondary-accent);
@@ -703,6 +784,50 @@
             background: rgba(100, 255, 218, 0.1);
         }
 
+        /* ===== BOUTON RETOUR EN HAUT ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 99;
+            background: rgba(10, 25, 47, 0.8);
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* ===== PLACEHOLDER POUR IMAGES MANQUANTES ===== */
+        .placeholder-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(17, 34, 64, 0.7), rgba(100, 255, 218, 0.2));
+            color: var(--text-dark);
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
             .logo {
@@ -730,61 +855,27 @@
             }
             
             .hamburger {
-                display: block;
-                position: relative;
-                z-index: 1000;
-            }
-            
-            .hamburger.active .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-            
-            .hamburger.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .hamburger.active .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
+                display: flex;
             }
             
             .nav-list {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 70%;
-                background-color: var(--primary-dark);
-                padding-top: 90px;
-                transition: all 0.5s ease;
-                z-index: 999;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-dark);
                 flex-direction: column;
-                align-items: flex-start;
-                padding-left: 2rem;
-                border-left: 1px solid rgba(100, 255, 218, 0.2);
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             }
             
             .nav-list.active {
-                right: 0;
+                display: flex;
             }
             
             .nav-item {
-                margin: 1rem 0;
-                width: 100%;
-                text-align: left;
-            }
-            
-            .nav-cta {
-                margin-left: 0;
-                margin-top: 1rem;
-                width: 100%;
-                padding: 0 1rem;
-            }
-            
-            .nav-cta-button {
-                display: block;
-                width: 100%;
-                text-align: center;
-                margin-top: 1rem;
+                margin: 0.5rem 0;
             }
             
             .about-hero {
@@ -819,19 +910,23 @@
 <body>
     <!-- Effet de code qui défile en arrière-plan -->
     <div class="code-background"></div>
+    
+    <!-- Effet de particules -->
+    <div class="particles-container" id="particles"></div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <!-- Logo NetCorp -->
+    <nav class="navbar" id="navbar">
         <a href="index.html" class="logo">
-            <span class="logo-net">Net</span>
-            <span class="logo-corp">Corp</span>
+            <div class="logo-container">
+                <!--<img src="./logo_net2.0.png" alt="Logo NetCorp" class="logo-icon">-->
+                <span class="logo-net">Net</span><span class="logo-corp">Corp</span>
+            </div>
         </a>
         
         <ul class="nav-list">
             <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
             <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">À Propos</a></li>
+            <li class="nav-item"><a href="A propos.html" class="nav-link active">À Propos</a></li>
             <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
             <!-- Bouton CTA dans la navigation -->
@@ -855,6 +950,11 @@
         <a href="https://wa.me/2290158249458" target="_blank" class="whatsapp-button">
             <i class="fab fa-whatsapp"></i> Contact WhatsApp
         </a>
+    </div>
+
+    <!-- Bouton retour en haut -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
     </div>
 
     <!-- Hero Section -->
@@ -882,7 +982,7 @@
                 </p>
             </div>
             <div class="story-image">
-                <img src="NetCorp Logo.png" alt="Bureau NetCorp">
+                <div class="placeholder-image">Image: Notre équipe en action</div>
             </div>
         </div>
     </section>
@@ -894,7 +994,7 @@
             <!-- Victorien DEGLA -->
             <div class="team-member">
                 <div class="member-image">
-                    <img src="Victorien.png" alt="Victorien DEGLA">
+                    <div class="placeholder-image">Victorien</div>
                 </div>
                 <h3 class="member-name">Victorien DEGLA</h3>
                 <p class="member-role">Fondateur & PDG</p>
@@ -904,7 +1004,7 @@
             <!-- Chef de projet -->
             <div class="team-member">
                 <div class="member-image">
-                    <img src="Aurel.jpg" alt="Chef de projet">
+                    <div class="placeholder-image">Aurel</div>
                 </div>
                 <h3 class="member-name">AKOUTA Aurel</h3>
                 <p class="member-role">Chef de Projet & Responsable Administratif</p>
@@ -914,7 +1014,7 @@
             <!-- Développeurs Backend -->
             <div class="team-member">
                 <div class="member-image">
-                    <img src="user-avatar-male-5.png" alt="Développeur Backend">
+                    <div class="placeholder-image">Fabrice</div>
                 </div>
                 <h3 class="member-name">HOUNKPE Carlos Fabrice</h3>
                 <p class="member-role">Développeur Backend Senior</p>
@@ -923,7 +1023,7 @@
             
             <div class="team-member">
                 <div class="member-image">
-                    <img src="user-avatar-male-5.png" alt="Développeur Backend">
+                    <div class="placeholder-image">Shadrak</div>
                 </div>
                 <h3 class="member-name">BESSANH Shadrak</h3>
                 <p class="member-role">Développeur Backend</p>
@@ -933,7 +1033,7 @@
             <!-- Développeurs Frontend -->
             <div class="team-member">
                 <div class="member-image">
-                    <img src="Béatrice 1.jpg" alt="Développeur Frontend">
+                    <div class="placeholder-image">Béatrice</div>
                 </div>
                 <h3 class="member-name">SEGNIAGBETO Béatrice</h3>
                 <p class="member-role">Développeuse Frontend</p>
@@ -942,7 +1042,7 @@
             
             <div class="team-member">
                 <div class="member-image">
-                    <img src="Cédric.jpg" alt="Développeur Frontend">
+                    <div class="placeholder-image">Cédric</div>
                 </div>
                 <h3 class="member-name">BADA Cédric</h3>
                 <p class="member-role">Développeur Frontend</p>
@@ -952,7 +1052,7 @@
             <!-- Responsable Sécurité -->
             <div class="team-member">
                 <div class="member-image">
-                    <img src="Jaurès.jpg" alt="Responsable Sécurité">
+                    <div class="placeholder-image">Jaurès</div>
                 </div>
                 <h3 class="member-name">DJANGUEDE Jean Jaurès</h3>
                 <p class="member-role">Responsable Cybersécurité</p>
@@ -962,11 +1062,11 @@
             <!-- Designer UX -->
             <div class="team-member">
                 <div class="member-image">
-                    <img src="user-avatar-male-5.png" alt="Designer UX">
+                    <div class="placeholder-image">Designer</div>
                 </div>
-                <h3 class="member-name">xxxx</h3>
+                <h3 class="member-name">Recherche en cours</h3>
                 <p class="member-role">Designer UX/UI</p>
-                <p class="member-bio">Architecte de l'expérience utilisateur, xxx conçoit des parcours fluides qui répondent aux besoins des utilisateurs.</p>
+                <p class="member-bio">Nous recherchons actuellement un talentueux designer UX/UI pour compléter notre équipe et créer des expériences utilisateur exceptionnelles.</p>
             </div>
         </div>
     </section>
@@ -1019,7 +1119,7 @@
     <section class="cta-section">
         <div class="cta-content">
             <h2 class="cta-title">Prêt à transformer votre entreprise avec une équipe passionnée à vos côtés ?</h2>
-            <a href="#contact" class="cta-button cta-main">
+            <a href="index.html#contact" class="cta-button cta-main">
                 <i class="fas fa-rocket"></i> Démarrer un projet
             </a>
         </div>
@@ -1031,7 +1131,7 @@
         <p class="footer-contact">contact@netcorp.com | WhatsApp : +229 0158249458</p>
         <p class="footer-contact" style="margin-top: 1rem;">Abomey-Calavi, Bénin</p>
         <div class="footer-cta">
-            <a href="#contact" class="cta-button footer-button">
+            <a href="index.html#contact" class="cta-button footer-button">
                 <i class="fas fa-calendar-alt"></i> Planifier un appel
             </a>
         </div>
@@ -1039,24 +1139,72 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Création des particules animées
+            function createParticles() {
+                const container = document.getElementById('particles');
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Position aléatoire
+                    const size = Math.random() * 20 + 5;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const delay = Math.random() * 20;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.background = `radial-gradient(circle, var(--primary-accent), transparent)`;
+                    
+                    container.appendChild(particle);
+                }
+            }
+            
+            createParticles();
+
+            // Animation de la navbar au scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Bouton retour en haut
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
             // Animation du contenu hero
             setTimeout(() => {
                 document.querySelector('.about-hero-content').classList.add('animate');
             }, 300);
             
-            // Animation des éléments au défilement
+            // Animation des éléments au défilement améliorée
             function animateOnScroll() {
                 const elements = document.querySelectorAll(
                     '.section-title, .story-text, ' +
                     '.team-member, .value-card'
                 );
                 
-                elements.forEach(element => {
+                elements.forEach((element, index) => {
                     const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight * 0.8;
+                    const screenPosition = window.innerHeight * 0.85;
                     
                     if(elementPosition < screenPosition) {
-                        element.classList.add('animate');
+                        setTimeout(() => {
+                            element.classList.add('animate');
+                        }, index * 200);
                     }
                 });
             }
@@ -1086,6 +1234,14 @@
                     document.querySelector('.hamburger').classList.remove('active');
                     document.querySelector('.nav-list').classList.remove('active');
                     document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Bouton retour en haut
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
             });
 

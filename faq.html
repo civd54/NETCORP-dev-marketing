@@ -292,7 +292,7 @@
         /* ===== HERO SECTION STYLE DÉVELOPPEUR ===== */
         .faq-hero {
             background: var(--gradient-hero), 
-                        url('faq1.jpeg') center/cover no-repeat;
+                        linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(17, 34, 64, 0.8));
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -570,7 +570,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop') center/cover;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(17, 34, 64, 0.8));
             opacity: 0.05;
             animation: backgroundMove 30s linear infinite;
         }
@@ -1004,6 +1004,92 @@
                 font-size: 1.4rem;
             }
         }
+
+        /* ===== AMÉLIORATIONS AJOUTÉES ===== */
+        .placeholder-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(17, 34, 64, 0.7), rgba(100, 255, 218, 0.2));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            background: rgba(10, 25, 47, 0.7);
+            color: var(--text-light);
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+        }
+
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--primary-accent);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .faq-item.highlight {
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 99;
+            background: rgba(10, 25, 47, 0.8);
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-5px);
+        }
     </style>
     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -1056,6 +1142,11 @@
         <a href="https://wa.me/2290158249458" target="_blank" class="whatsapp-button">
             <i class="fab fa-whatsapp"></i> Contact WhatsApp
         </a>
+    </div>
+
+    <!-- Bouton retour en haut -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
     </div>
 
     <!-- Hero Section -->
@@ -1123,13 +1214,19 @@
             <h1 class="faq-section-title">FAQ – Questions Fréquentes</h1>
             <p class="intro">Retrouvez ici les réponses aux questions les plus posées sur nos services, nos méthodes de travail et notre accompagnement.</p>
 
+            <!-- Barre de recherche -->
+            <div class="search-bar">
+                <input type="text" class="search-input" id="faqSearch" placeholder="Rechercher une question...">
+                <button class="search-button"><i class="fas fa-search"></i></button>
+            </div>
+
             <h2 class="faq-category">À propos de NetCorp</h2>
 
             <div class="faq-item">
                 <button class="faq-question">Qu'est-ce que NetCorp ?</button>
                 <div class="faq-answer">
                     <p>NetCorp est une entreprise spécialisée dans les services informatiques, accompagnant les entreprises dans leur transformation numérique en proposant des solutions innovantes, sur mesure et accessibles.</p>
-                    <img src="faq2.jpeg" alt="Équipe NetCorp au travail">
+                    <div class="placeholder-image">Illustration: Équipe NetCorp</div>
                 </div>
             </div>
 
@@ -1137,7 +1234,7 @@
                 <button class="faq-question">À qui s'adressent vos services ?</button>
                 <div class="faq-answer">
                     <p>Nos services s'adressent à tout type d'entreprise : start-ups, PME, institutions, associations ou particuliers souhaitant se professionnaliser.</p>
-                    <img src="faq3.jpeg" alt="Diversité des clients NetCorp">
+                    <div class="placeholder-image">Illustration: Diversité des clients NetCorp</div>
                 </div>
             </div>
 
@@ -1145,7 +1242,7 @@
                 <button class="faq-question">Comment commencer un projet avec vous ?</button>
                 <div class="faq-answer">
                     <p>Il vous suffit de nous contacter via notre formulaire ou par email. Nous discuterons de vos besoins, établirons un devis personnalisé, puis lancerons le projet après validation.</p>
-                    <img src="faq4.jpeg" alt="Signature de contrat avec NetCorp">
+                    <div class="placeholder-image">Illustration: Processus de collaboration</div>
                 </div>
             </div>
 
@@ -1155,7 +1252,7 @@
                 <button class="faq-question">Quels types de sites proposez-vous ?</button>
                 <div class="faq-answer">
                     <p>Nous créons des sites vitrines, des boutiques en ligne (e-commerce), des blogs, des portails d'entreprise et même des plateformes personnalisées.</p>
-                    <img src="faq5.jpeg" alt="Exemples de sites web créés par NetCorp">
+                    <div class="placeholder-image">Illustration: Exemples de sites web</div>
                 </div>
             </div>
 
@@ -1163,7 +1260,7 @@
                 <button class="faq-question">Est-ce que vos sites sont responsives ?</button>
                 <div class="faq-answer">
                     <p>Oui, tous nos sites s'adaptent automatiquement à tous les types d'écrans : mobile, tablette et ordinateur.</p>
-                    <img src="faq6.jpeg" alt="Site web responsive sur différents appareils">
+                    <div class="placeholder-image">Illustration: Site responsive sur différents appareils</div>
                 </div>
             </div>
 
@@ -1171,7 +1268,7 @@
                 <button class="faq-question">Puis-je modifier mon site après sa création ?</button>
                 <div class="faq-answer">
                     <p>Oui. Nous pouvons intégrer un système de gestion de contenu (CMS) simple qui vous permet de modifier textes et images sans coder.</p>
-                    <img src="faq5.jpeg" alt="Interface d'administration de site web">
+                    <div class="placeholder-image">Illustration: Interface d'administration</div>
                 </div>
             </div>
 
@@ -1179,7 +1276,7 @@
                 <button class="faq-question">Offrez-vous aussi l'hébergement et le nom de domaine ?</button>
                 <div class="faq-answer">
                     <p>Oui, nous proposons des packs complets avec hébergement sécurisé, nom de domaine, et certificat SSL.</p>
-                    <img src="faq7.jpeg" alt="Serveurs d'hébergement NetCorp">
+                    <div class="placeholder-image">Illustration: Services d'hébergement</div>
                 </div>
             </div>
 
@@ -1189,7 +1286,7 @@
                 <button class="faq-question">Créez-vous des applications mobiles ?</button>
                 <div class="faq-answer">
                     <p>Oui. Nous développons des applications Android, iOS et web, selon vos besoins, avec une interface intuitive et moderne.</p>
-                    <img src="faq8.jpeg" alt="Applications mobiles développées par NetCorp">
+                    <div class="placeholder-image">Illustration: Applications mobiles</div>
                 </div>
             </div>
 
@@ -1197,7 +1294,7 @@
                 <button class="faq-question">Combien de temps prend la création d'une application ?</button>
                 <div class="faq-answer">
                     <p>Le délai varie selon la complexité. Un projet simple peut prendre 2 à 4 semaines, tandis qu'un projet avancé peut nécessiter plusieurs mois.</p>
-                    <img src="faq9.jpeg" alt="Processus de développement d'application">
+                    <div class="placeholder-image">Illustration: Processus de développement</div>
                 </div>
             </div>
 
@@ -1205,7 +1302,7 @@
                 <button class="faq-question">Offrez-vous un suivi après la livraison ?</button>
                 <div class="faq-answer">
                     <p>Oui. Nous assurons un support technique après la mise en ligne et proposons des forfaits de maintenance si nécessaire.</p>
-                    <img src="faq10.jpeg" alt="Support technique NetCorp">
+                    <div class="placeholder-image">Illustration: Support technique</div>
                 </div>
             </div>
 
@@ -1215,7 +1312,7 @@
                 <button class="faq-question">Quelles plateformes gérez-vous ?</button>
                 <div class="faq-answer">
                     <p>Nous gérons les comptes Facebook, Instagram, LinkedIn, TikTok et X (anciennement Twitter).</p>
-                    <img src="faq11.jpeg" alt="Plateformes de réseaux sociaux gérées par NetCorp">
+                    <div class="placeholder-image">Illustration: Plateformes sociales</div>
                 </div>
             </div>
 
@@ -1223,7 +1320,7 @@
                 <button class="faq-question">Créez-vous le contenu à publier ?</button>
                 <div class="faq-answer">
                     <p>Oui. Nos community managers conçoivent des visuels et des textes adaptés à votre audience, en respectant votre identité de marque.</p>
-                    <img src="faq12.jpeg" alt="Création de contenu pour réseaux sociaux">
+                    <div class="placeholder-image">Illustration: Création de contenu</div>
                 </div>
             </div>
 
@@ -1231,7 +1328,7 @@
                 <button class="faq-question">Puis-je suivre les résultats de vos actions ?</button>
                 <div class="faq-answer">
                     <p>Bien sûr. Nous vous envoyons régulièrement des rapports d'analyse avec les performances de vos publications.</p>
-                    <img src="faq12.jpeg" alt="Rapports d'analyse de performance">
+                    <div class="placeholder-image">Illustration: Rapports d'analyse</div>
                 </div>
             </div>
 
@@ -1241,7 +1338,7 @@
                 <button class="faq-question">Proposez-vous la création de logos et flyers ?</button>
                 <div class="faq-answer">
                     <p>Oui. Nous créons des logos uniques, des maquettes web, des flyers, cartes de visite, et autres supports de communication.</p>
-                    <img src="faq13.jpeg" alt="Exemples de logos créés par NetCorp">
+                    <div class="placeholder-image">Illustration: Exemples de logos</div>
                 </div>
             </div>
 
@@ -1249,7 +1346,7 @@
                 <button class="faq-question">Puis-je demander plusieurs versions de mon logo ?</button>
                 <div class="faq-answer">
                     <p>Oui. Nous proposons plusieurs propositions et jusqu'à 3 retouches selon votre pack.</p>
-                    <img src="faq14.jpeg" alt="Différentes versions de logo">
+                    <div class="placeholder-image">Illustration: Différentes versions de logo</div>
                 </div>
             </div>
 
@@ -1257,7 +1354,7 @@
                 <button class="faq-question">Les fichiers finaux sont-ils livrés ?</button>
                 <div class="faq-answer">
                     <p>Absolument. Vous recevez les fichiers HD dans les formats standards (PNG, JPG, PDF, SVG).</p>
-                    <img src="faq15.jpeg" alt="Livraison des fichiers finaux">
+                    <div class="placeholder-image">Illustration: Livraison des fichiers</div>
                 </div>
             </div>
 
@@ -1267,7 +1364,7 @@
                 <button class="faq-question">Vos devis sont-ils gratuits ?</button>
                 <div class="faq-answer">
                     <p>Oui. Chaque devis est personnalisé selon votre projet, sans engagement.</p>
-                    <img src="16.jpeg" alt="Devis personnalisé NetCorp">
+                    <div class="placeholder-image">Illustration: Devis personnalisé</div>
                 </div>
             </div>
 
@@ -1275,7 +1372,7 @@
                 <button class="faq-question">Quels sont vos tarifs ?</button>
                 <div class="faq-answer">
                     <p>Nos prix varient selon le type de service. Contactez-nous pour un devis précis. Nous adaptons nos offres à tous les budgets.</p>
-                    <img src="faq17.jpeg" alt="Tarifs adaptés NetCorp">
+                    <div class="placeholder-image">Illustration: Tarifs adaptés</div>
                 </div>
             </div>
 
@@ -1285,7 +1382,7 @@
                 <button class="faq-question">Fournissez-vous un support après la livraison ?</button>
                 <div class="faq-answer">
                     <p>Oui. Nous restons disponibles pour toute assistance ou modification. Un contrat de maintenance peut aussi être mis en place.</p>
-                    <img src="faq18.jpeg" alt="Support client NetCorp">
+                    <div class="placeholder-image">Illustration: Support client</div>
                 </div>
             </div>
 
@@ -1293,7 +1390,7 @@
                 <button class="faq-question">Mes données sont-elles en sécurité ?</button>
                 <div class="faq-answer">
                     <p>Nous garantissons la confidentialité de toutes les données partagées. Des clauses de confidentialité peuvent être signées sur demande.</p>
-                    <img src="" alt="Sécurité des données NetCorp">
+                    <div class="placeholder-image">Illustration: Sécurité des données</div>
                 </div>
             </div>
 
@@ -1364,6 +1461,14 @@
                 } else {
                     navbar.classList.remove('scrolled');
                 }
+
+                // Bouton retour en haut
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
             });
 
             // Animation du contenu hero
@@ -1417,14 +1522,57 @@
                 });
             });
 
-            // Script accordéon FAQ
+            // Script accordéon FAQ amélioré
             const faqButtons = document.querySelectorAll(".faq-question");
         
             faqButtons.forEach(button => {
                 button.addEventListener("click", () => {
-                    const answer = button.nextElementSibling;
-                    button.classList.toggle("active");
-                    answer.classList.toggle("open");
+                    const isActive = button.classList.contains("active");
+                    
+                    // Fermer toutes les réponses
+                    faqButtons.forEach(btn => {
+                        btn.classList.remove("active");
+                        btn.nextElementSibling.classList.remove("open");
+                    });
+                    
+                    // Ouvrir la réponse cliquée si elle n'était pas active
+                    if (!isActive) {
+                        button.classList.add("active");
+                        button.nextElementSibling.classList.add("open");
+                    }
+                });
+            });
+
+            // Recherche dans la FAQ
+            const searchInput = document.getElementById('faqSearch');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const faqItems = document.querySelectorAll('.faq-item');
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        // Surligner l'élément correspondant
+                        if (searchTerm.length > 0) {
+                            item.classList.add('highlight');
+                        } else {
+                            item.classList.remove('highlight');
+                        }
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('highlight');
+                    }
+                });
+            });
+
+            // Bouton retour en haut
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
             });
 
